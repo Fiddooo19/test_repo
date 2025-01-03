@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- On action bar -->
+    <item
+        android:id="@+id/select"
+        android:title="@string/select"
+        app:showAsAction="ifRoom"/>
+
+    <!-- Overflow menu. No need for icon -->
+    <item
+        android:id="@+id/report_bugs"
+        android:title="@string/User" />
+
+    <item
+        android:id="@+id/about"
+        android:title="@string/Admin"/>
+
+</menu>
