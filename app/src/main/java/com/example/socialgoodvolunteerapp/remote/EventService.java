@@ -1,7 +1,7 @@
 package com.example.socialgoodvolunteerapp.remote;
 
-import com.example.socialgoodvolunteerapp.Event;
-import com.example.socialgoodvolunteerapp.Participation;
+import com.example.socialgoodvolunteerapp.model.Event;
+import com.example.socialgoodvolunteerapp.model.Participation;
 import com.example.socialgoodvolunteerapp.Status;
 
 import java.util.List;

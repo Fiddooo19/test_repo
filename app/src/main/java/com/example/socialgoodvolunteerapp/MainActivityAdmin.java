@@ -2,8 +2,6 @@ package com.example.socialgoodvolunteerapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,7 +72,7 @@ public class MainActivityAdmin extends AppCompatActivity {
     public void viewEventClicked(View view) {
 
         // forward to View Event Page
-        Intent intent = new Intent(this, EventActivity.class);
+        Intent intent = new Intent(this, EventDetailsActivity.class);
         startActivity(intent);
     }
 }

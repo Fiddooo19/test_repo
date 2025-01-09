@@ -1,6 +1,4 @@
-package com.example.socialgoodvolunteerapp;
-
-import com.example.socialgoodvolunteerapp.model.User;
+package com.example.socialgoodvolunteerapp.model;
 
 public class Participation {
     private int participation_id;
