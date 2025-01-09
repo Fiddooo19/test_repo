@@ -53,15 +53,6 @@ public class MainActivityAdmin extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // get the menu inflater
-        MenuInflater inflater = super.getMenuInflater();
-        // inflate the menu using our XML menu file id, options_menu
-        inflater.inflate(R.menu.options_menu, menu);
-        return true;
-    }
-
     public void logoutClicked(View view) {
         // clear the shared preferences
         SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
@@ -79,5 +70,11 @@ public class MainActivityAdmin extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
 
+    }
+    public void viewEventClicked(View view) {
+
+        // forward to View Event Page
+        Intent intent = new Intent(this, EventActivity.class);
+        startActivity(intent);
     }
 }

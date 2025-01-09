@@ -32,15 +32,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edtPassword;
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Get the menu inflater
-        MenuInflater inflater = super.getMenuInflater();
-        // Inflate the menu using the XML menu file `options_menu`
-        inflater.inflate(R.menu.options_menu, menu);
-        return true;
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
