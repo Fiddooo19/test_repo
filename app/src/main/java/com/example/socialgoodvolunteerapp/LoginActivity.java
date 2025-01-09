@@ -2,8 +2,6 @@ package com.example.socialgoodvolunteerapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -106,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (username.contains("admin")) {
                             startActivity(new Intent(getApplicationContext(), MainActivityAdmin.class));
                             } else {
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), MainActivityUser.class));
                         }
 
                     }

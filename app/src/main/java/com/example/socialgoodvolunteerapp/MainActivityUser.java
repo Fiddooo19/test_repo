@@ -17,7 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.socialgoodvolunteerapp.model.User;
 import com.example.socialgoodvolunteerapp.sharedpref.SharedPrefManager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivityUser extends AppCompatActivity {
 
     private TextView tvHello;
 
@@ -79,23 +79,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-    /*public void viewEventClicked(View view){
-        // clear the shared preferences
-        SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
-        spm.logout();
+    public void viewEventClicked(View view) {
 
-        // display message
-        Toast.makeText(getApplicationContext(),
-                "You have successfully logged out.",
-                Toast.LENGTH_LONG).show();
-
-        // terminate this MainActivity
-        finish();
-
-        // forward to Login Page
-        Intent intent = new Intent(this, LoginActivity.class);
+        // forward to View Event Page
+        Intent intent = new Intent(this, EventActivity.class);
         startActivity(intent);
     }
-
-     */
 }
