@@ -19,7 +19,7 @@ public interface EventService {
 
     // fetch list of records
     @GET("event")
-    Call<List<Event>> getAllEvents();
+    Call<List<Event>> getAllEvents(String token);
 
     // fetch single record
     @GET("event/{id}")

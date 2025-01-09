@@ -36,6 +36,7 @@ public class EventListActivity extends AppCompatActivity {
     private EventService EventService;
     private RecyclerView rvEventList;
     private EventAdapter adapter;
+    private Event selectedEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,7 +142,7 @@ public class EventListActivity extends AppCompatActivity {
         Log.d("MyApp:", "viewing details: " + selectedBook.toString());
         // forward user to BookDetailsActivity, passing the selected book id
         Intent intent = new Intent(getApplicationContext(), EventDetailsActivity.class);
-        intent.putExtra("event_id", selectedBook.getId());
+        intent.putExtra("event_id", selectedBook.getEvent_id());
         startActivity(intent);
     }
 }
