@@ -31,7 +31,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BookListActivity extends AppCompatActivity {
+public class EventListActivity extends AppCompatActivity {
 
     private EventService EventService;
     private RecyclerView rvEventList;
