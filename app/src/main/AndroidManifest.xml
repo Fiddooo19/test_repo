@@ -22,6 +22,9 @@
             android:name=".MainActivityAdmin"
             android:exported="true"/>
         <activity
+            android:name=".EventListActivity"
+            android:exported="true"/>
+        <activity
             android:name=".EventDetailsActivity"
             android:exported="true"/>
         <activity

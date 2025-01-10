@@ -101,11 +101,11 @@ public class LoginActivity extends AppCompatActivity {
 
                             // forward user to MainActivity
                             finish();
-                            if (username.contains("admin")) {
-                            startActivity(new Intent(getApplicationContext(), MainActivityAdmin.class));
+                            if (user.getRole().equals("admin")) {
+                                startActivity(new Intent(getApplicationContext(), MainActivityAdmin.class));
                             } else {
-                            startActivity(new Intent(getApplicationContext(), MainActivityUser.class));
-                        }
+                                startActivity(new Intent(getApplicationContext(), MainActivityUser.class));
+                            }
 
                     }
                     else {

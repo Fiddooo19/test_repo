@@ -33,7 +33,7 @@ import retrofit2.Response;
 
 public class EventListActivity extends AppCompatActivity {
 
-    private EventService EventService;
+    private EventService eventService;
     private RecyclerView rvEventList;
     private EventAdapter adapter;
     private Event selectedEvent;
@@ -61,10 +61,10 @@ public class EventListActivity extends AppCompatActivity {
         String token = user.getToken();
 
         // get book service instance
-        EventService = ApiUtils.getEventService();
+        eventService = ApiUtils.getEventService();
 
         // execute the call. send the user token when sending the query
-        EventService.getAllEvents(token).enqueue(new Callback<List<Event>>() {
+        eventService.getAllEvents(token).enqueue(new Callback<List<Event>>() {
             @Override
             public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
                 // for debug purpose
