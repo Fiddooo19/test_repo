@@ -72,7 +72,7 @@ public class MainActivityAdmin extends AppCompatActivity {
     public void viewEventClicked(View view) {
 
         // forward to View Event Page
-        Intent intent = new Intent(this, EventDetailsActivity.class);
+        Intent intent = new Intent(this, EventListActivity.class);
         startActivity(intent);
     }
 }

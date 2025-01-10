@@ -25,6 +25,9 @@
             android:name=".EventDetailsActivity"
             android:exported="true"/>
         <activity
+            android:name=".EventListActivity"
+            android:exported="true"/>
+        <activity
             android:name=".MainActivityUser"
             android:exported="true">
             <intent-filter>
