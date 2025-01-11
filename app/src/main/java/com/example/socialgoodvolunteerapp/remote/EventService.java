@@ -19,7 +19,7 @@ import retrofit2.http.Query;
 public interface EventService {
 
     // fetch list of records
-    @GET("events")
+    @GET("event")
     Call<List<Event>> getAllEvents(@Header("api-key") String token);
 
     // fetch single record
