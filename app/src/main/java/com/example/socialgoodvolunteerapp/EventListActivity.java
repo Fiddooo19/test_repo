@@ -33,7 +33,6 @@ import retrofit2.Response;
 
 public class EventListActivity extends AppCompatActivity {
 
-    private EventService eventService;
     private RecyclerView rvEventList;
     private EventAdapter adapter;
     private Event selectedEvent;
@@ -60,8 +59,8 @@ public class EventListActivity extends AppCompatActivity {
         User user = spm.getUser();
         String token = user.getToken();
 
-        // get book service instance
-        eventService = ApiUtils.getEventService();
+        // get event service instance
+        EventService eventService = ApiUtils.getEventService();
 
         // execute the call. send the user token when sending the query
         eventService.getAllEvents(token).enqueue(new Callback<List<Event>>() {
@@ -72,10 +71,10 @@ public class EventListActivity extends AppCompatActivity {
 
                 if (response.code() == 200) {
                     // Get list of event object from response
-                    List<Event> events = response.body();
+                    List<Event> event = response.body();
 
                     // initialize adapter
-                    adapter = new EventAdapter(getApplicationContext(), events);
+                    adapter = new EventAdapter(getApplicationContext(), event);
 
                     // set adapter to the RecyclerView
                     rvEventList.setAdapter(adapter);
@@ -128,8 +127,8 @@ public class EventListActivity extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        Event selectedBook = adapter.getSelectedItem();
-        Log.d("MyApp", "selected " + selectedBook.toString());    // debug purpose
+        Event selectedEvent = adapter.getSelectedItem();
+        Log.d("MyApp", "selected " + selectedEvent.toString());    // debug purpose
 
         if (item.getItemId() == R.id.menu_details) {    // user clicked details contextual menu
             doViewDetails(selectedEvent);
