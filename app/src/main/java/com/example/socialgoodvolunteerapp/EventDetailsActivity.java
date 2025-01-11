@@ -16,10 +16,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class EventDetailsActivity extends AppCompatActivity {
 
-    private ImageView backButton, favoriteIcon, eventImage, cameraIcon;
-    private TextView pageTitle, eventName, tvDate, tvTime, tvCategory, tvLocation, tvDescription;
-    private Button joinButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,22 +29,24 @@ public class EventDetailsActivity extends AppCompatActivity {
         });
 
         // Initialize UI components
-        backButton = findViewById(R.id.btnBack);
-        cameraIcon = findViewById(R.id.camera_icon);
-        eventImage = findViewById(R.id.event_image);
-        favoriteIcon = findViewById(R.id.favorite_icon);
-        pageTitle = findViewById(R.id.page_title);
-        eventName = findViewById(R.id.event_name);
-        tvDate = findViewById(R.id.tvDate);
-        tvTime = findViewById(R.id.event_time);
-        tvCategory = findViewById(R.id.tvCategory);
-        tvLocation = findViewById(R.id.tvLocation);
-        tvDescription = findViewById(R.id.tvDescription);
-        joinButton = findViewById(R.id.join_button);
+        ImageView backButton = findViewById(R.id.btnBack);
+        ImageView cameraIcon = findViewById(R.id.camera_icon);
+        ImageView eventImage = findViewById(R.id.event_image);
+        ImageView favoriteIcon = findViewById(R.id.favorite_icon);
+        TextView pageTitle = findViewById(R.id.page_title);
+        TextView eventName = findViewById(R.id.event_name);
+        TextView tvDate = findViewById(R.id.tvDate);
+        TextView tvTime = findViewById(R.id.event_time);
+        TextView tvCategory = findViewById(R.id.tvCategory);
+        TextView tvLocation = findViewById(R.id.tvLocation);
+        TextView tvDescription = findViewById(R.id.tvDescription);
+        Button joinButton = findViewById(R.id.join_button);
+
+
 
         // Back button click listener
         backButton.setOnClickListener(view -> {
-            Intent intent = new Intent(EventDetailsActivity.this, MainActivityAdmin.class);
+            Intent intent = new Intent(EventDetailsActivity.this, MainActivityUser.class);
             startActivity(intent);
             finish();
         });

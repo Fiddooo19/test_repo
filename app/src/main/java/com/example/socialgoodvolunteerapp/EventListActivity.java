@@ -71,11 +71,11 @@ public class EventListActivity extends AppCompatActivity {
                 Log.d("MyApp:", "Response: " + response.raw().toString());
 
                 if (response.code() == 200) {
-                    // Get list of book object from response
-                    List<Event> books = response.body();
+                    // Get list of event object from response
+                    List<Event> events = response.body();
 
                     // initialize adapter
-                    adapter = new EventAdapter(getApplicationContext(), books);
+                    adapter = new EventAdapter(getApplicationContext(), events);
 
                     // set adapter to the RecyclerView
                     rvEventList.setAdapter(adapter);
@@ -138,11 +138,11 @@ public class EventListActivity extends AppCompatActivity {
         return super.onContextItemSelected(item);
     }
 
-    private void doViewDetails(Event selectedBook) {
-        Log.d("MyApp:", "viewing details: " + selectedBook.toString());
-        // forward user to BookDetailsActivity, passing the selected book id
+    private void doViewDetails(Event selectedEvent) {
+        Log.d("MyApp:", "viewing details: " + selectedEvent.toString());
+        // forward user to EventDetailsActivity, passing the selected event id
         Intent intent = new Intent(getApplicationContext(), EventDetailsActivity.class);
-        intent.putExtra("event_id", selectedBook.getEvent_id());
+        intent.putExtra("event_id", selectedEvent.getEvent_id());
         startActivity(intent);
     }
 }
