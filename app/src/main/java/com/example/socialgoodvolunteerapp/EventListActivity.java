@@ -7,6 +7,7 @@ import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -35,7 +36,6 @@ public class EventListActivity extends AppCompatActivity {
 
     private RecyclerView rvEventList;
     private EventAdapter adapter;
-    private Event selectedEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,14 @@ public class EventListActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        // Back button click listener
+        ImageView backButton = findViewById(R.id.btnBack);
+        backButton.setOnClickListener(view -> {
+            Intent intent = new Intent(EventListActivity.this, MainActivityUser.class);
+            startActivity(intent);
+            finish();
         });
 
         // get reference to the RecyclerView bookList
@@ -116,7 +124,6 @@ public class EventListActivity extends AppCompatActivity {
         // forward to Login Page
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
-
     }
 
     @Override

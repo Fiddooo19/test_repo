@@ -24,7 +24,7 @@ public interface EventService {
 
     // fetch single record
     @GET("event/{id}")
-    Call<Event> getEvent(@Path("id") int id);
+    Call<Event> getEvent(String token, @Path("id") int id);
 
     // create new record
     @POST("event")
