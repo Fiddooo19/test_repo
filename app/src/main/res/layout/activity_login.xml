@@ -117,7 +117,7 @@
             android:layout_height="50dp"
             android:layout_marginBottom="16dp"
             android:text="@string/Login"
-            android:textColor="#0B0A0A"
+            android:textColor="@color/white"
             android:backgroundTint="#61452F"
             android:onClick="loginClicked" />
 
