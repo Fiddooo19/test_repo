@@ -42,6 +42,21 @@ public class EventDetailsActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Initialize UI components
+        ImageView backButton = findViewById(R.id.btnBack);
+
+        Button joinButton = findViewById(R.id.join_button);
+
+        // Back button click listener
+        backButton.setOnClickListener(view -> {
+            finish();
+        });
+
+        // Join button click listener (example placeholder)
+        joinButton.setOnClickListener(view -> {
+            // Code to join the event (to be implemented)
+        });
+
         // retrieve event details based on selected id
 
         // get event id sent by EventListActivity, -1 if not found
