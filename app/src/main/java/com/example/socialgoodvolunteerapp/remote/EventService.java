@@ -20,11 +20,11 @@ public interface EventService {
 
     // fetch list of records
     @GET("event")
-    Call<List<Event>> getAllEvents(@Header("api-key") String token);
+    Call<List<Event>> getAllEvents(@Header("api-key") String api_key);
 
     // fetch single record
     @GET("event/{id}")
-    Call<Event> getEvent(String token, @Path("id") int id);
+    Call<Event> getEvent(@Header("api-key") String api_key, @Path("id") int id);
 
     // create new record
     @POST("event")

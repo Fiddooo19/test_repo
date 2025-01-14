@@ -58,7 +58,6 @@ public class EventDetailsActivity extends AppCompatActivity {
 
         // execute the API query. send the token and event id
         eventService.getEvent(token, eventId).enqueue(new Callback<Event>() {
-
             @Override
             public void onResponse(Call<Event> call, Response<Event> response) {
                 // for debug purpose
