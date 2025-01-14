@@ -73,6 +73,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         // bind data to the view holder instance
         Event m = EventListData.get(position);
         holder.tvEventName.setText(m.getEvent_name());
+        holder.tvCategory.setText(m.getcategory());
+        holder.tvLocation.setText(m.getlocation());
     }
 
     @Override

@@ -34,6 +34,7 @@ import retrofit2.Response;
 
 public class EventListActivity extends AppCompatActivity {
 
+    private EventService eventService;
     private RecyclerView rvEventList;
     private EventAdapter adapter;
 
@@ -62,13 +63,16 @@ public class EventListActivity extends AppCompatActivity {
         //register for context menu
         registerForContextMenu(rvEventList);
 
+        // fetch and update book list
+        //updateRecyclerView();
+
         // get user info from SharedPreferences to get token value
         SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
         User user = spm.getUser();
         String token = user.getToken();
 
         // get event service instance
-        EventService eventService = ApiUtils.getEventService();
+        eventService = ApiUtils.getEventService();
 
         // execute the call. send the user token when sending the query
         eventService.getAllEvents(token).enqueue(new Callback<List<Event>>() {
