@@ -28,6 +28,18 @@
             android:name=".EventDetailsActivity"
             android:exported="true"/>
         <activity
+            android:name=".EventListActivityAdmin"
+            android:exported="true"/>
+        <activity
+            android:name=".EventDetailsActivityAdmin"
+            android:exported="true"/>
+        <activity
+            android:name=".UpdateEventActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".NewEventActivity"
+            android:exported="false"/>
+        <activity
             android:name=".MainActivityUser"
             android:exported="true">
         </activity>

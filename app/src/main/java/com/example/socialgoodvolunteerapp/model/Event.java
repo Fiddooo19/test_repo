@@ -8,6 +8,7 @@ public class Event {
     private String location;
     private String category;
     private String date;
+
     private int organizer_id;
 
     public Event(int event_id, String event_name, User organizer, String description, String location, String category, String date) {
@@ -20,7 +21,9 @@ public class Event {
         this.date = date;
     }
 
+    public Event(){
 
+    }
     public int getEvent_id() {
 
         return event_id;
@@ -87,6 +90,14 @@ public class Event {
     public void setcategory(String category) {
 
         this.category = category;
+    }
+
+    public int getOrganizer_id() {
+        return organizer_id;
+    }
+
+    public void setOrganizer_id(int organizer_id) {
+        this.organizer_id = organizer_id;
     }
 
     @Override

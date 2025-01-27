@@ -63,7 +63,7 @@ public class EventListActivity extends AppCompatActivity {
         //register for context menu
         registerForContextMenu(rvEventList);
 
-        // fetch and update book list
+        // fetch and update event list
         //updateRecyclerView();
 
         // get user info from SharedPreferences to get token value
@@ -75,7 +75,13 @@ public class EventListActivity extends AppCompatActivity {
         eventService = ApiUtils.getEventService();
 
         // execute the call. send the user token when sending the query
-        eventService.getAllEvents(token).enqueue(new Callback<List<Event>>() {
+        Call eventCall;
+        if (user.getRole().equals("user"))
+            eventCall = eventService.getAllEvents(token);
+        else
+            eventCall = eventService.getAllEventsForOrganizer(token, user.getId());
+
+        eventCall.enqueue(new Callback<List<Event>>() {
             @Override
             public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
                 // for debug purpose

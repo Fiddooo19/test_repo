@@ -1,5 +1,6 @@
 package com.example.socialgoodvolunteerapp.remote;
 
+import com.example.socialgoodvolunteerapp.model.DeleteResponse;
 import com.example.socialgoodvolunteerapp.model.Event;
 import com.example.socialgoodvolunteerapp.model.Participation;
 import com.example.socialgoodvolunteerapp.Status;
@@ -22,24 +23,36 @@ public interface EventService {
     @GET("event")
     Call<List<Event>> getAllEvents(@Header("api-key") String api_key);
 
+    @GET("event")
+    Call<List<Event>> getAllEventsForOrganizer (@Header("api-key") String api_key, @Query("organizer_id") int organizer_id);
+
     // fetch single record
     @GET("event/{id}")
     Call<Event> getEvent(@Header("api-key") String api_key, @Path("id") int id);
 
     // create new record
-    @POST("event")
     @FormUrlEncoded
-    Call<Event> addEvent(@Field("event_name") String eventName, @Field("organizer_id") int organizer_id);
+    @POST("event")
+    Call<Event> addEvent(@Header ("api-key") String apiKey, @Field("event_name") String event_name,
+                         @Field("description") String description, @Field("location") String location,
+                         @Field("category") String category, @Field("date") String date, @Field("organizer_id") int organizer_id);
 
     // delete record
-    @DELETE("event/{event_id}")
-    Call<Status> deleteEvent(@Path("event_id") int id);
+    //@DELETE("event/{event_id}")
+    //Call<Status> deleteEvent(@Path("event_id") int id);
+
+    //delete record
+    @DELETE("event/{id}")
+    Call<DeleteResponse>deleteBook(@Header ("api-key") String apiKey, @Path("id") int id);
 
     // update event record
-    @POST("event/{event_id}")
     @FormUrlEncoded
-    Call<Event> updateEvent(@Path("event_id") int id, @Field("event_name") String event_name,
-                            @Field("organizer_id") int organizer_id);
+    @POST("event/{event_id}")
+    Call<Event> updateEvent(@Header ("api-key") String apiKey, @Path("event_id") int event_id,
+                            @Field("event_name") String event_name, @Field("description") String description,
+                            @Field("location") String location, @Field("category") String category,
+                            @Field("date") String date, @Field("organizer_id") int organizer_id);
+
 
     // fetch list of participation's for a user
     @GET("participations")
