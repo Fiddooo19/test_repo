@@ -47,6 +47,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     private List<Event> EventListData;   // list of book objects
     private Context mContext;       // activity context
     private int currentPos;         // currently selected item (long press)
+    private String role;
 
     public EventAdapter(Context context, List<Event> listData) {
         EventListData = listData;
@@ -62,7 +63,17 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         // Inflate layout using the single item layout
-        View view = inflater.inflate(R.layout.event_list_item, parent, false);
+
+        View view;
+
+        // Inflate layout based on user role
+        if ("user".equals(role)) {
+            view = inflater.inflate(R.layout.event_list_item, parent, false);
+        } else {
+            view = inflater.inflate(R.layout.event_list_item_admin, parent, false);
+        }
+
+        //View view = inflater.inflate(R.layout.event_list_item, parent, false);
         // Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
@@ -71,6 +82,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // bind data to the view holder instance
+
         Event m = EventListData.get(position);
         holder.tvEventName.setText(m.getEvent_name());
         holder.tvCategory.setText(m.getcategory());

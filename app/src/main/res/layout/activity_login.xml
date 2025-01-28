@@ -38,7 +38,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="290dp"
-        android:layout_marginBottom="0dp"
         android:background="@drawable/backgroundrounded"
         android:orientation="vertical"
         android:padding="20dp">
@@ -114,8 +113,7 @@
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="16dp"
+            android:layout_height="wrap_content"
             android:text="@string/Login"
             android:textColor="@color/white"
             android:backgroundTint="#61452F"
