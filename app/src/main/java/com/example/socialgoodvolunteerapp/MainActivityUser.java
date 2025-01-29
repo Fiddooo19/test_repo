@@ -89,7 +89,7 @@ public class MainActivityUser extends AppCompatActivity {
     public void viewMyEventClicked(View view) {
     }
 
-    public void cancelPartiClicked(View view) {
+    public void cancelPartClicked(View view) {
     }
 
     public void JoinEventClicked(View view) {
