@@ -38,6 +38,7 @@
         android:id="@+id/btnViewMyEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="viewMyEventClicked"
         android:text="VIEW MY EVENT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,6 +51,7 @@
         android:id="@+id/btnCancelParticipation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="cancelPartiClicked"
         android:text="CANCEL PARTICIPATION"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,9 +74,10 @@
         app:layout_constraintVertical_bias="0.089" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnJoinEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="JoinEventClicked"
         android:text="JOIN EVENT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

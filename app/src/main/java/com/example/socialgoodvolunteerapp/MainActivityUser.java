@@ -85,4 +85,13 @@ public class MainActivityUser extends AppCompatActivity {
         Intent intent = new Intent(this, EventListActivity.class);
         startActivity(intent);
     }
+
+    public void viewMyEventClicked(View view) {
+    }
+
+    public void cancelPartiClicked(View view) {
+    }
+
+    public void JoinEventClicked(View view) {
+    }
 }
