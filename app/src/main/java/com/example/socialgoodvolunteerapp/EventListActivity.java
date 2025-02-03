@@ -26,6 +26,7 @@ import com.example.socialgoodvolunteerapp.remote.ApiUtils;
 import com.example.socialgoodvolunteerapp.remote.EventService;
 import com.example.socialgoodvolunteerapp.sharedpref.SharedPrefManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -37,6 +38,8 @@ public class EventListActivity extends AppCompatActivity {
     private EventService eventService;
     private RecyclerView rvEventList;
     private EventAdapter adapter;
+    private User user;
+    private boolean showMyEventsOnly = false; // Flag to filter events
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,60 +60,53 @@ public class EventListActivity extends AppCompatActivity {
             finish();
         });
 
-        // get reference to the RecyclerView bookList
+        // Get reference to the RecyclerView
         rvEventList = findViewById(R.id.rvEventList);
-
-        //register for context menu
         registerForContextMenu(rvEventList);
 
-        // fetch and update event list
-        //updateRecyclerView();
-
-        // get user info from SharedPreferences to get token value
+        // Retrieve user data
         SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
-        User user = spm.getUser();
+        user = spm.getUser();
         String token = user.getToken();
 
-        // get event service instance
+        // Get filter flag from Intent
+        showMyEventsOnly = getIntent().getBooleanExtra("filter_my_events", false);
+
+        // Get event service instance
         eventService = ApiUtils.getEventService();
 
-        // execute the call. send the user token when sending the query
-        Call eventCall;
-        if (user.getRole().equals("user"))
+        // Fetch events based on user role
+        fetchEvents(token);
+    }
+
+    private void fetchEvents(String token) {
+        Call<List<Event>> eventCall;
+
+        if (user.getRole().equals("user")) {
             eventCall = eventService.getAllEvents(token);
-        else
+        } else {
             eventCall = eventService.getAllEventsForOrganizer(token, user.getId());
+        }
 
         eventCall.enqueue(new Callback<List<Event>>() {
             @Override
             public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
-                // for debug purpose
                 Log.d("MyApp:", "Response: " + response.raw().toString());
 
                 if (response.code() == 200) {
-                    // Get list of event object from response
-                    List<Event> event = response.body();
+                    List<Event> events = response.body();
 
-                    // initialize adapter
-                    adapter = new EventAdapter(getApplicationContext(), event);
+                    // Filter events if "My Events" is selected
+                    if (showMyEventsOnly) {
+                        events = filterUserJoinedEvents(events);
+                    }
 
-                    // set adapter to the RecyclerView
-                    rvEventList.setAdapter(adapter);
-
-                    // set layout to recycler view
-                    rvEventList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-
-                    // add separator between item in the list
-                    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvEventList.getContext(),
-                            DividerItemDecoration.VERTICAL);
-                    rvEventList.addItemDecoration(dividerItemDecoration);
+                    setupRecyclerView(events);
                 } else if (response.code() == 401) {
-                    // invalid token, ask user to relogin
                     Toast.makeText(getApplicationContext(), "Invalid session. Please login again", Toast.LENGTH_LONG).show();
                     clearSessionAndRedirect();
                 } else {
                     Toast.makeText(getApplicationContext(), "Error: " + response.message(), Toast.LENGTH_LONG).show();
-                    // server return other error
                     Log.e("MyApp: ", response.toString());
                 }
             }
@@ -123,17 +119,33 @@ public class EventListActivity extends AppCompatActivity {
         });
     }
 
+    private List<Event> filterUserJoinedEvents(List<Event> allEvents) {
+        List<Event> filteredEvents = new ArrayList<>();
+        String userId = String.valueOf(user.getId());
+
+        for (Event event : allEvents) {
+            if (event.getParticipants() != null && event.getParticipants().contains(userId)) {
+                filteredEvents.add(event);
+            }
+        }
+
+        return filteredEvents;
+    }
+
+    private void setupRecyclerView(List<Event> events) {
+        adapter = new EventAdapter(getApplicationContext(), events);
+        rvEventList.setAdapter(adapter);
+        rvEventList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+        DividerItemDecoration divider = new DividerItemDecoration(rvEventList.getContext(), DividerItemDecoration.VERTICAL);
+        rvEventList.addItemDecoration(divider);
+    }
+
     public void clearSessionAndRedirect() {
-        // clear the shared preferences
         SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
         spm.logout();
-
-        // terminate this MainActivity
         finish();
-
-        // forward to Login Page
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, LoginActivity.class));
     }
 
     @Override
@@ -145,9 +157,9 @@ public class EventListActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         Event selectedEvent = adapter.getSelectedItem();
-        Log.d("MyApp", "selected " + selectedEvent.toString());    // debug purpose
+        Log.d("MyApp", "Selected: " + selectedEvent.toString());
 
-        if (item.getItemId() == R.id.menu_details) {    // user clicked details contextual menu
+        if (item.getItemId() == R.id.menu_details) {
             doViewDetails(selectedEvent);
         }
 
@@ -155,8 +167,7 @@ public class EventListActivity extends AppCompatActivity {
     }
 
     private void doViewDetails(Event selectedEvent) {
-        Log.d("MyApp:", "viewing details: " + selectedEvent.toString());
-        // forward user to EventDetailsActivity, passing the selected event id
+        Log.d("MyApp:", "Viewing details: " + selectedEvent.toString());
         Intent intent = new Intent(getApplicationContext(), EventDetailsActivity.class);
         intent.putExtra("event_id", selectedEvent.getEvent_id());
         startActivity(intent);
