@@ -43,7 +43,7 @@ public interface EventService {
 
     //delete record
     @DELETE("event/{id}")
-    Call<DeleteResponse>deleteBook(@Header ("api-key") String apiKey, @Path("id") int id);
+    Call<DeleteResponse>deleteEvent(@Header ("api-key") String apiKey, @Path("id") int id);
 
     // update event record
     @FormUrlEncoded

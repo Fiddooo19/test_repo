@@ -60,7 +60,7 @@ public class EventListActivityAdmin extends AppCompatActivity {
             finish();
         });
 
-        // get reference to the RecyclerView bookList
+        // get reference to the RecyclerView eventList
         rvEventList = findViewById(R.id.rvEventList);
 
         //register for context menu
@@ -147,10 +147,10 @@ public class EventListActivityAdmin extends AppCompatActivity {
 
                 if (response.code() == 200) {
                     // Get list of book object from response
-                    List<Event> books = response.body();
+                    List<Event> events = response.body();
 
                     // initialize adapter
-                    adapter = new EventAdapter(getApplicationContext(), books);
+                    adapter = new EventAdapter(getApplicationContext(), events);
 
                     // set adapter to the RecyclerView
                     rvEventList.setAdapter(adapter);
@@ -193,8 +193,8 @@ public class EventListActivityAdmin extends AppCompatActivity {
         User user = spm.getUser();
 
         // prepare REST API call
-        EventService bookService = ApiUtils.getEventService();
-        Call<DeleteResponse> call = bookService.deleteBook(user.getToken(), selectedEvent.getEvent_id());
+        EventService eventService = ApiUtils.getEventService();
+        Call<DeleteResponse> call = eventService.deleteEvent(user.getToken(), selectedEvent.getEvent_id());
 
         // execute the call
         call.enqueue(new Callback<DeleteResponse>() {
