@@ -227,7 +227,7 @@
 
     <!-- Join Button -->
     <Button
-        android:id="@+id/join_button"
+        android:id="@+id/btnJoinEvent"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_margin="16dp"
@@ -235,6 +235,7 @@
         android:backgroundTint="#61452F"
         android:textColor="@color/white"
         android:textStyle="bold"
+        android:onClick="JoinEvent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

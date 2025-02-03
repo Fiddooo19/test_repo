@@ -40,6 +40,9 @@
             android:name=".NewEventActivity"
             android:exported="false"/>
         <activity
+            android:name=".ViewMyEventsActivity"
+            android:exported="false"/>
+        <activity
             android:name=".MainActivityUser"
             android:exported="true">
         </activity>
