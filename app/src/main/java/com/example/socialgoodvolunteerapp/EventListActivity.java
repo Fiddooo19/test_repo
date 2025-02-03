@@ -52,6 +52,10 @@ public class EventListActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Debug: Check if flag is received
+        showMyEventsOnly = getIntent().getBooleanExtra("filter_my_events", false);
+        Log.d("MyApp", "Filter My Events flag received: " + showMyEventsOnly);
+
         // Back button click listener
         ImageView backButton = findViewById(R.id.btnBack);
         backButton.setOnClickListener(view -> {
@@ -68,18 +72,16 @@ public class EventListActivity extends AppCompatActivity {
         SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
         user = spm.getUser();
         String token = user.getToken();
-
-        // Get filter flag from Intent
-        showMyEventsOnly = getIntent().getBooleanExtra("filter_my_events", false);
+        Log.d("MyApp", "User ID: " + user.getId() + ", Token: " + token);
 
         // Get event service instance
         eventService = ApiUtils.getEventService();
 
         // Fetch events based on user role
-        fetchEvents(token);
+        fetchEvent(token);
     }
 
-    private void fetchEvents(String token) {
+    private void fetchEvent(String token) {
         Call<List<Event>> eventCall;
 
         if (user.getRole().equals("user")) {
@@ -91,30 +93,39 @@ public class EventListActivity extends AppCompatActivity {
         eventCall.enqueue(new Callback<List<Event>>() {
             @Override
             public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
-                Log.d("MyApp:", "Response: " + response.raw().toString());
+                Log.d("MyApp", "API Response received. Status Code: " + response.code());
 
                 if (response.code() == 200) {
                     List<Event> events = response.body();
+                    Log.d("MyApp", "Total events received: " + (events != null ? events.size() : 0));
+
+                    // If no events received, show a toast
+                    if (events == null || events.isEmpty()) {
+                        Log.d("MyApp", "No events found.");
+                        Toast.makeText(getApplicationContext(), "No events found.", Toast.LENGTH_LONG).show();
+                        return;
+                    }
 
                     // Filter events if "My Events" is selected
                     if (showMyEventsOnly) {
                         events = filterUserJoinedEvents(events);
                     }
 
+                    Log.d("MyApp", "Total events after filtering: " + (events != null ? events.size() : 0));
                     setupRecyclerView(events);
                 } else if (response.code() == 401) {
                     Toast.makeText(getApplicationContext(), "Invalid session. Please login again", Toast.LENGTH_LONG).show();
                     clearSessionAndRedirect();
                 } else {
                     Toast.makeText(getApplicationContext(), "Error: " + response.message(), Toast.LENGTH_LONG).show();
-                    Log.e("MyApp: ", response.toString());
+                    Log.e("MyApp", "API Response Error: " + response.toString());
                 }
             }
 
             @Override
             public void onFailure(Call<List<Event>> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Error connecting to the server", Toast.LENGTH_LONG).show();
-                Log.e("MyApp:", t.toString());
+                Log.e("MyApp", "API Call Failed: ", t);
             }
         });
     }
@@ -123,16 +134,26 @@ public class EventListActivity extends AppCompatActivity {
         List<Event> filteredEvents = new ArrayList<>();
         String userId = String.valueOf(user.getId());
 
+        Log.d("MyApp", "Filtering events for user ID: " + userId);
+
         for (Event event : allEvents) {
-            if (event.getParticipants() != null && event.getParticipants().contains(userId)) {
-                filteredEvents.add(event);
+            if (event.getParticipants() != null) {
+                Log.d("MyApp", "Checking event: " + event.getEvent_name() + ", Participants: " + event.getParticipants());
+
+                if (event.getParticipants().contains(userId)) {
+                    filteredEvents.add(event);
+                }
+            } else {
+                Log.d("MyApp", "Event " + event.getEvent_name() + " has no participants list.");
             }
         }
 
+        Log.d("MyApp", "Filtered events count: " + filteredEvents.size());
         return filteredEvents;
     }
 
     private void setupRecyclerView(List<Event> events) {
+        Log.d("MyApp", "Setting up RecyclerView with " + events.size() + " events.");
         adapter = new EventAdapter(getApplicationContext(), events);
         rvEventList.setAdapter(adapter);
         rvEventList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -157,7 +178,7 @@ public class EventListActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         Event selectedEvent = adapter.getSelectedItem();
-        Log.d("MyApp", "Selected: " + selectedEvent.toString());
+        Log.d("MyApp", "Selected event: " + selectedEvent.toString());
 
         if (item.getItemId() == R.id.menu_details) {
             doViewDetails(selectedEvent);
@@ -167,7 +188,7 @@ public class EventListActivity extends AppCompatActivity {
     }
 
     private void doViewDetails(Event selectedEvent) {
-        Log.d("MyApp:", "Viewing details: " + selectedEvent.toString());
+        Log.d("MyApp", "Viewing details for event: " + selectedEvent.toString());
         Intent intent = new Intent(getApplicationContext(), EventDetailsActivity.class);
         intent.putExtra("event_id", selectedEvent.getEvent_id());
         startActivity(intent);

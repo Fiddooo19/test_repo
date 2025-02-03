@@ -13,6 +13,7 @@ public interface UserService {
     @POST("users/login")
     Call<User> login(@Field("username") String username, @Field("password") String password);
 
-    @FormUrlEncoded @POST("users/login")
+    @FormUrlEncoded
+    @POST("users/login")
     Call<User> loginEmail(@Field("email") String email, @Field("password") String password);
 }
