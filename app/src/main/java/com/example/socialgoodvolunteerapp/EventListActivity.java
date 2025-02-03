@@ -78,10 +78,10 @@ public class EventListActivity extends AppCompatActivity {
         eventService = ApiUtils.getEventService();
 
         // Fetch events based on user role
-        fetchEvents(token);
+        fetchEvent(token);
     }
 
-    private void fetchEvents(String token) {
+    private void fetchEvent(String token) {
         Call<List<Event>> eventCall;
 
         if (user.getRole().equals("user")) {

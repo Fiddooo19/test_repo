@@ -146,7 +146,7 @@ public class EventListActivityAdmin extends AppCompatActivity {
                 Log.d("MyApp:", "Response: " + response.raw().toString());
 
                 if (response.code() == 200) {
-                    // Get list of book object from response
+                    // Get list of event object from response
                     List<Event> events = response.body();
 
                     // initialize adapter
@@ -202,7 +202,7 @@ public class EventListActivityAdmin extends AppCompatActivity {
             public void onResponse(Call<DeleteResponse> call, Response<DeleteResponse> response) {
                 if (response.code() == 200) {
                     // 200 means OK
-                    displayAlert("Book successfully deleted");
+                    displayAlert("Event successfully deleted");
                     // update data in list view
                     updateRecyclerView();
                 }
@@ -285,7 +285,7 @@ public class EventListActivityAdmin extends AppCompatActivity {
 
     private void doUpdateEvent(Event selectedEvent) {
         Log.d("MyApp:", "updating event: " + selectedEvent.toString());
-        // forward user to UpdateBookActivity, passing the selected book id
+        // forward user to UpdateEventActivity, passing the selected event id
         Intent intent = new Intent(getApplicationContext(), UpdateEventActivity.class);
         intent.putExtra("event_id", selectedEvent.getEvent_id());
         startActivity(intent);
@@ -301,7 +301,7 @@ public class EventListActivityAdmin extends AppCompatActivity {
 
     public void floatingAddEventClicked(View view) {
 
-        // forward user to NewBookActivity
+        // forward user to NewEventActivity
         Intent intent = new Intent(getApplicationContext(), NewEventActivity.class);
         startActivity(intent);
     }
