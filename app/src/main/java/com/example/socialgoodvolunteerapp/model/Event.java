@@ -1,5 +1,7 @@
 package com.example.socialgoodvolunteerapp.model;
 
+import java.util.List;
+
 public class Event {
     private int event_id;
     private String event_name;
@@ -8,6 +10,7 @@ public class Event {
     private String location;
     private String category;
     private String date;
+    private List<String> participants; // List of user IDs
 
     private int organizer_id;
 
@@ -19,6 +22,10 @@ public class Event {
         this.location = location;
         this.category = category;
         this.date = date;
+    }
+
+    public List<String> getParticipants() {
+        return participants;
     }
 
     public Event(){

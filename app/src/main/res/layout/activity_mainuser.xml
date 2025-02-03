@@ -25,51 +25,65 @@
         android:id="@+id/btnViewEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="VIEW EVENT"
         android:onClick="viewEventClicked"
+        android:text="VIEW EVENT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.379" />
+        app:layout_constraintVertical_bias="0.272" />
 
     <Button
         android:id="@+id/btnViewMyEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="viewMyEventClicked"
         android:text="VIEW MY EVENT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.552"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.518" />
+        app:layout_constraintVertical_bias="0.38" />
 
     <Button
         android:id="@+id/btnCancelParticipation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="cancelPartClicked"
         android:text="CANCEL PARTICIPATION"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.651" />
+        app:layout_constraintVertical_bias="0.622" />
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SOCIAL GOOD VOLUNTEER"
-        android:textStyle="italic"
         android:textSize="25dp"
+        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.532"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.089" />
+
+    <Button
+        android:id="@+id/btnJoinEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="JoinEventClicked"
+        android:text="JOIN EVENT"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
