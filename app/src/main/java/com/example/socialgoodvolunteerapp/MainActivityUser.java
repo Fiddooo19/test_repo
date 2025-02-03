@@ -87,6 +87,9 @@ public class MainActivityUser extends AppCompatActivity {
     }
 
     public void viewMyEventClicked(View view) {
+        Intent intent = new Intent(this, EventListActivity.class);
+        intent.putExtra("filter_my_events", true);
+        startActivity(intent);
     }
 
     public void cancelPartClicked(View view) {
