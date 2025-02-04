@@ -7,4 +7,8 @@
         android:showAsAction="always"
         android:title="Event Details" />
 
+    <item android:id="@+id/menu_join"
+        android:showAsAction="always"
+        android:title="Join Event" />
+
 </menu>
