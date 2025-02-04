@@ -74,8 +74,8 @@ public class ParticipationAdapter extends RecyclerView.Adapter<ParticipationAdap
 
         Participation p = participationListData.get(position);
         holder.tvEventName.setText(p.getEvent().getEvent_name());
-        holder.tvCategory.setText(p.getEvent().getcategory());
-        holder.tvLocation.setText(p.getEvent().getlocation());
+        holder.tvCategory.setText(p.getEvent().getCategory());
+        holder.tvLocation.setText(p.getEvent().getLocation());
     }
 
 

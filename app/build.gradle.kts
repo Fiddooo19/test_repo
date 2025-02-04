@@ -52,4 +52,10 @@ dependencies {
         annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
     }
 
+    dependencies {
+        implementation ("com.github.bumptech.glide:glide:4.15.1")
+        annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
+    }
+
+
 }

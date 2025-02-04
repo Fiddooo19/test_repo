@@ -84,10 +84,10 @@ public class EventDetailsActivityJoined extends AppCompatActivity {
 
                     // set values
                     eventName.setText(event.getEvent_name());
-                    tvDate.setText(event.getdate());
-                    tvCategory.setText(event.getcategory());
-                    tvLocation.setText(event.getlocation());
-                    tvDescription.setText(event.getdescription());
+                    tvDate.setText(event.getDate());
+                    tvCategory.setText(event.getCategory());
+                    tvLocation.setText(event.getLocation());
+                    tvDescription.setText(event.getDescription());
 
                 }
                 else if (response.code() == 401) {

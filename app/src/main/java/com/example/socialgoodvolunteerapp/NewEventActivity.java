@@ -141,10 +141,10 @@ public class NewEventActivity extends AppCompatActivity {
         // Create a new Event object and set the organizer_id
         Event newEvent = new Event();
         newEvent.setEvent_name(event_name);
-        newEvent.setdescription(description);
-        newEvent.setlocation(location);
-        newEvent.setcategory(category);
-        newEvent.setdate(eventDate);
+        newEvent.setDescription(description);
+        newEvent.setLocation(location);
+        newEvent.setCategory(category);
+        newEvent.setDate(eventDate);
         newEvent.setOrganizer_id(user.getId()); // Set the organizer_id from the logged-in user
 
         // send request to add new book to the REST API

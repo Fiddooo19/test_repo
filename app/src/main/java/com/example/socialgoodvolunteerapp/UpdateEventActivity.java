@@ -138,16 +138,16 @@ public class UpdateEventActivity extends AppCompatActivity {
 
                     // set values into forms
                     tvEventName.setText(event.getEvent_name());
-                    tvDescription.setText(event.getdescription());
-                    tvLocation.setText(event.getlocation());
-                    tvCategory.setText(event.getcategory());
-                    tvDate.setText(event.getdate());
+                    tvDescription.setText(event.getDescription());
+                    tvLocation.setText(event.getLocation());
+                    tvCategory.setText(event.getCategory());
+                    tvDate.setText(event.getDate());
 
                     // parse created_at date to date object
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     try {
                         // parse created date string to date object
-                        date = sdf.parse(event.getdate());
+                        date = sdf.parse(event.getDate());
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -213,18 +213,18 @@ public class UpdateEventActivity extends AppCompatActivity {
         // update the book object retrieved in when populating the form with the new data.
         // update all fields excluding the id
         event.setEvent_name(event_name);
-        event.setdescription(description);
-        event.setlocation(location);
-        event.setcategory(category);
-        event.setdate(eventDate);
+        event.setDescription(description);
+        event.setLocation(location);
+        event.setCategory(category);
+        event.setDate(eventDate);
         event.setOrganizer_id(user.getId()); // Set the organizer_id from the logged-in user
 
         //Log.d("MyApp:", "New Event info: " + event.toString());
 
         // send request to update the book record to the REST API
         EventService eventService = ApiUtils.getEventService();
-        Call<Event> call = eventService.updateEvent(user.getToken(),event.getEvent_id(), event.getEvent_name(), event.getdescription(),
-                event.getlocation(), event.getcategory(), event.getdate(), event.getOrganizer_id());
+        Call<Event> call = eventService.updateEvent(user.getToken(),event.getEvent_id(), event.getEvent_name(), event.getDescription(),
+                event.getLocation(), event.getCategory(), event.getDate(), event.getOrganizer_id());
 
         // execute
         call.enqueue(new Callback<Event>() {
