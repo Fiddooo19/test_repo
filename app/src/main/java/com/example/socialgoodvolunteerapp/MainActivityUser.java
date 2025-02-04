@@ -34,6 +34,7 @@ import retrofit2.Response;
 public class MainActivityUser extends AppCompatActivity {
 
     private TextView tvHello;
+    private TextView tvUsername;
     private EventService eventService;
     private RecyclerView rvEventList;
     private EventAdapter adapter;
@@ -75,6 +76,13 @@ public class MainActivityUser extends AppCompatActivity {
         // Optionally, add item decoration if needed (for example, dividers between items)
         rvEventList.addItemDecoration(new DividerItemDecoration(rvEventList.getContext(), DividerItemDecoration.VERTICAL));
 
+        // Get reference to the TextViews
+        tvUsername = findViewById(R.id.tvUsername);
+
+        // Display user details
+        if (user != null) {
+            tvUsername.setText("Hi, " + user.getUsername());
+        }
 
     }
 
@@ -182,4 +190,11 @@ public class MainActivityUser extends AppCompatActivity {
         Intent intent = new Intent(this, MyEventActivityList.class);
         startActivity(intent);
     }
+    public void viewProfileClicked(View view) {
+        // Forward to ProfileActivity
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+
+
 }

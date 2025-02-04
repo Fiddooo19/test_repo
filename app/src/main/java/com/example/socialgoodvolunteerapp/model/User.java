@@ -12,6 +12,7 @@ public class User {
     private String role;
     private int is_active;
     private String secret;
+    private String imagePath;
 
     public int getId() {
         return id;
@@ -44,6 +45,15 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
 
     public String getToken() {
         return token;

@@ -20,17 +20,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageButton
+        <TextView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/acc_ic"
+            android:onClick="viewProfileClicked"
             android:src="@drawable/acc_ic"/>
 
         <TextView
-            android:id="@+id/tvGreeting"
+            android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hi, Orelly Studio"
+            android:text="Hi,"
             android:textSize="16sp"
             android:textColor="#000000"
             android:textStyle="bold"
@@ -55,7 +56,7 @@
         android:id="@+id/tvPopularEvents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Popular Events"
+        android:text="Category"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginStart="16dp"
@@ -198,6 +199,7 @@
             android:backgroundTint="#A68565"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
+            android:onClick="viewProfileClicked"
             android:text="Profile"
             android:textColor="#FFFFFF" />
     </LinearLayout>

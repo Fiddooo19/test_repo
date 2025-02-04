@@ -32,4 +32,9 @@ public interface UserService {
             @Field("password") String password,
             @Field("role") String role // Added field for role
     );
+
+    // Add the method for updating profile picture
+    @FormUrlEncoded
+    @POST("users/updateProfilePicture")  // Replace with your actual API endpoint
+    Call<Void> updateUserProfilePicture(@Field("userId") String userId, @Field("imagePath") String imagePath);
 }

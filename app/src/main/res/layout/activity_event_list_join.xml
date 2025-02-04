@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:text="EVENT"
+            android:text="MY EVENT"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="18sp"

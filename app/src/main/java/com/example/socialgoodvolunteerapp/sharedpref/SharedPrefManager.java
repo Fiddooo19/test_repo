@@ -73,4 +73,15 @@ public class SharedPrefManager {
         editor.clear();
         editor.apply();
     }
+
+    public void saveUser(User user) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("username", user.getUsername());
+        editor.putString("email", user.getEmail());
+        editor.putString("password", user.getPassword());
+        editor.apply();
+    }
+
+
 }
