@@ -16,9 +16,6 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ProfileActivity"
-            android:exported="false" />
-        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
@@ -44,6 +41,15 @@
             android:exported="false" />
         <activity
             android:name=".NewEventActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EventDetailsJoinActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EventDetailsActivityJoined"
+            android:exported="false" />
+        <activity
+            android:name=".MyEventActivityList"
             android:exported="false" />
         <activity
             android:name=".MainActivityUser"

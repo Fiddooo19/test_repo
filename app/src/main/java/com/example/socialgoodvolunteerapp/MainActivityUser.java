@@ -176,4 +176,10 @@ public class MainActivityUser extends AppCompatActivity {
         finish();
         startActivity(new Intent(this, LoginActivity.class));
     }
+
+    public void viewMyEventClicked(View view) {
+        // forward to View Event Page
+        Intent intent = new Intent(this, MyEventActivityList.class);
+        startActivity(intent);
+    }
 }

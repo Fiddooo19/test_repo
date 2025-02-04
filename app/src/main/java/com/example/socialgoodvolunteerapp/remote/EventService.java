@@ -55,6 +55,11 @@ public interface EventService {
 
 
     // fetch list of participation's for a user
-    @GET("participations")
-    Call<List<Participation>> getAllParticipationsForUser(@Query("user_id[e]") int userId);
+    @FormUrlEncoded
+    @POST("participations")
+    Call<Participation> addParticipation(@Header("api-key") String apiKey, @Field("user_id") int userId,
+                                         @Field("event_id") int eventId);
+
+    @DELETE("participations/{participation_id}")
+    Call<DeleteResponse> deleteParticipation(@Header("api-key") String apiKey, @Path("participation_id") int participation_id);
 }

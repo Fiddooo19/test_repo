@@ -63,7 +63,7 @@ public class ParticipationAdapter extends RecyclerView.Adapter<ParticipationAdap
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         // Inflate layout using the single item layout
-        View view = inflater.inflate(R.layout.activity_event_list, parent, false);
+        View view = inflater.inflate(R.layout.event_list_item_join, parent, false);
         // Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;

@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,19 +15,16 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.socialgoodvolunteerapp.model.Event;
-import com.example.socialgoodvolunteerapp.model.Participation;
 import com.example.socialgoodvolunteerapp.model.User;
 import com.example.socialgoodvolunteerapp.remote.ApiUtils;
 import com.example.socialgoodvolunteerapp.remote.EventService;
 import com.example.socialgoodvolunteerapp.sharedpref.SharedPrefManager;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EventDetailsActivity extends AppCompatActivity {
+public class EventDetailsActivityJoined extends AppCompatActivity {
 
     private EventService eventService;
 
@@ -37,7 +32,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_event_details);
+        setContentView(R.layout.activity_event_details_joined);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -48,7 +43,7 @@ public class EventDetailsActivity extends AppCompatActivity {
         // Back button click listener
         ImageView backButton = findViewById(R.id.btnBack);
         backButton.setOnClickListener(view -> {
-            Intent intent = new Intent(EventDetailsActivity.this, EventListActivity.class);
+            Intent intent = new Intent(EventDetailsActivityJoined.this, MyEventActivityList.class);
             startActivity(intent);
             finish();
         });

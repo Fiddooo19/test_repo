@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:background="#F0E5DC"
-    tools:context=".EventDetailsActivity">
+    tools:context=".EventDetailsJoinActivity">
 
     <!-- Top Bar with Back Button and Camera Icon -->
     <ImageView

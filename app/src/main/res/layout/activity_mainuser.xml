@@ -185,6 +185,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:backgroundTint="#A68565"
+            android:onClick="viewMyEventClicked"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="My Events"

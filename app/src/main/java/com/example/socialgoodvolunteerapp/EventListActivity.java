@@ -183,14 +183,26 @@ public class EventListActivity extends AppCompatActivity {
             doViewDetails(selectedEvent);
         }
 
+        if (item.getItemId() == R.id.menu_join) {
+            doJointEvent(selectedEvent);
+        }
+
         return super.onContextItemSelected(item);
     }
-
     private void doViewDetails(Event selectedEvent) {
         Log.d("MyApp", "Viewing details for event: " + selectedEvent.toString());
         Intent intent = new Intent(getApplicationContext(), EventDetailsActivity.class);
         intent.putExtra("event_id", selectedEvent.getEvent_id());
         startActivity(intent);
     }
+    private void doJointEvent(Event selectedEvent) {
+        Log.d("MyApp:", "borrowing book: " + selectedEvent.toString());
+        // forward user to BorrowBookActivity, passing the selected book id
+        Intent intent = new Intent(getApplicationContext(), EventDetailsJoinActivity.class);
+        intent.putExtra("event_id", selectedEvent.getEvent_id());
+        startActivity(intent);
+    }
+
+
 }
 
