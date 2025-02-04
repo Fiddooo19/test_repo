@@ -16,43 +16,47 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".MainActivityAdmin"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".EventListActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".EventDetailsActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".EventListActivityAdmin"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".EventDetailsActivityAdmin"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".UpdateEventActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".NewEventActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".MainActivityUser"
-            android:exported="true">
-        </activity>
-
-        <!-- Splash Screen -->
-        <activity android:name=".SplashActivity"
+            android:exported="true" /> <!-- Splash Screen -->
+        <activity
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

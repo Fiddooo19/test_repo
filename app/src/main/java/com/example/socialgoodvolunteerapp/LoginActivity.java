@@ -1,4 +1,5 @@
 package com.example.socialgoodvolunteerapp;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -6,8 +7,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -32,108 +31,37 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.btnLogin), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
-        // get references to form elements
+        // Initialize the EditText fields
         edtUsername = findViewById(R.id.edtUsername);
         edtPassword = findViewById(R.id.edtPassword);
+
+        // Ensure that the main view is not null before calling the ViewCompat method
+        View mainView = findViewById(R.id.login);
+        if (mainView != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(mainView, (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return insets;
+            });
+        } else {
+            Log.e("LoginActivity", "Main view is null. Please check the layout file.");
+        }
     }
+
 
     /**
      * Login button action handler
      */
     public void loginClicked(View view) {
-
-        // get username and password entered by user
         String username = edtUsername.getText().toString();
         String password = edtPassword.getText().toString();
 
-        // validate form, make sure it is not empty
+        // Validate form before making the API call
         if (validateLogin(username, password)) {
-            // if not empty, login using REST API
             doLogin(username, password);
         }
-
-    }
-
-    /**
-     * Call REST API to login
-     *
-     * @param username username
-     * @param password password
-     */
-    private void doLogin(String username, String password) {
-
-        // get UserService instance
-        UserService userService = ApiUtils.getUserService();
-
-        // prepare the REST API call using the service interface
-        Call<User> call;
-        if (username.contains("@")) {
-            call = userService.loginEmail(username, password);
-        } else {
-            call = userService.login(username, password);
-        }
-
-        // execute the REST API call
-        call.enqueue(new Callback<User>() {
-
-            @Override
-            public void onResponse(Call call, Response response) {
-
-                if (response.isSuccessful()) {  // code 200
-                    // parse response to POJO
-                    User user = (User) response.body();
-                    if (user != null && user.getToken() != null) {
-                            // successful login. server replies a token value
-                            displayToast("Login successful");
-                            displayToast("Token: " + user.getToken());
-
-                            // store value in Shared Preferences
-                            SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
-                            spm.storeUser(user);
-
-                            // forward user to MainActivity
-                            finish();
-                            if (user.getRole().equals("admin")) {
-                                startActivity(new Intent(getApplicationContext(), MainActivityAdmin.class));
-                            } else {
-                                startActivity(new Intent(getApplicationContext(), MainActivityUser.class));
-                            }
-
-                    }
-                    else {
-                        // server return success but no user info replied
-                        displayToast("Login error");
-                    }
-                }
-                else {  // other than 200
-                    // try to parse the response to FailLogin POJO
-                    String errorResp = null;
-                    try {
-                        errorResp = response.errorBody().string();
-                        FailLogin e = new Gson().fromJson(errorResp, FailLogin.class);
-                        displayToast(e.getError().getMessage());
-                    } catch (Exception e) {
-                        Log.e("MyApp:", e.toString()); // print error details to error log
-                        displayToast("Error");
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                displayToast("Error connecting to server.");
-                displayToast(t.getMessage());
-                Log.e("MyApp:", t.toString()); // print error details to error log
-            }
-        });
     }
 
     /**
@@ -155,10 +83,77 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
+     * Call REST API to login
+     *
+     * @param username username
+     * @param password password
+     */
+    private void doLogin(String username, String password) {
+        UserService userService = ApiUtils.getUserService();
+
+        // Prepare the REST API call using the service interface
+        Call<User> call = username.contains("@") ? userService.loginEmail(username, password) : userService.login(username, password);
+
+        // Execute the REST API call
+        call.enqueue(new Callback<User>() {
+
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful()) {  // code 200
+                    User user = response.body();
+                    if (user != null && user.getToken() != null) {
+                        // Successful login. Store the user in SharedPreferences
+                        SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
+                        spm.storeUser(user);
+
+                        // Log successful login
+                        Log.d("LoginActivity", "Login successful. User token: " + user.getToken());
+
+                        // Forward user to MainActivity
+                        finish();  // Close the LoginActivity
+
+                        if (user.getRole().equals("admin")) {
+                            startActivity(new Intent(getApplicationContext(), MainActivityAdmin.class));
+                        } else if (user.getRole().equals("user")) {
+                            startActivity(new Intent(getApplicationContext(), MainActivityUser.class));
+                        } else {
+                            displayToast("Unknown user role.");
+                        }
+                    } else {
+                        displayToast("Login failed: No user info returned.");
+                    }
+                } else {
+                    // Handle unsuccessful response
+                    try {
+                        String errorResp = response.errorBody().string();
+                        FailLogin failLogin = new Gson().fromJson(errorResp, FailLogin.class);
+                        displayToast(failLogin.getError().getMessage());
+                    } catch (Exception e) {
+                        Log.e("LoginActivity", "Error parsing response: ", e);
+                        displayToast("Error occurred during login.");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.e("LoginActivity", "API call failed: " + t.toString());
+                displayToast("Error connecting to the server.");
+            }
+        });
+    }
+
+    /**
      * Display a Toast message
      * @param message message to be displayed inside toast
      */
-    public void displayToast(String message) {
+    private void displayToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
+
+    public void openRegisterPage(View view) {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    }
+
 }
