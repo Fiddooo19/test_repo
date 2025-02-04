@@ -85,11 +85,4 @@ public class MainActivityUser extends AppCompatActivity {
         Intent intent = new Intent(this, EventListActivity.class);
         startActivity(intent);
     }
-
-    public void ViewMyEventClicked(View view) {
-
-        // forward to View My Event Page
-        Intent intent = new Intent(this, ViewMyEventsActivity.class);
-        startActivity(intent);
-    }
 }

@@ -1,5 +1,4 @@
 package com.example.socialgoodvolunteerapp;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -194,3 +193,4 @@ public class EventListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
+

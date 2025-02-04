@@ -12,4 +12,9 @@ public class ApiUtils {
     public static EventService getEventService() {
         return RetrofitClient.getClient(BASE_URL).create(EventService.class);
     }
+
+    // return ParticipationService instance
+    public static ParticipationService getParticipationService() {
+        return RetrofitClient.getClient(BASE_URL).create(ParticipationService.class);
+    }
 }
