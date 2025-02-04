@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Event Image -->
+    <!-- Event Image Section -->
     <ImageView
         android:id="@+id/event_image"
         android:layout_width="0dp"
@@ -52,9 +52,13 @@
         android:layout_marginTop="16dp"
         android:src="@drawable/roundedbutton"
         android:scaleType="centerCrop"
+        android:contentDescription="Event Image"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintTop_toBottomOf="@id/btnBack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 
     <!-- Event Name and Favorite Icon -->
     <TextView
@@ -228,18 +232,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Join Button -->
-    <Button
-        android:id="@+id/join_button"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_margin="16dp"
-        android:text="Join Now"
-        android:backgroundTint="#61452F"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
