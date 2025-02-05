@@ -8,19 +8,6 @@
     tools:context=".MainActivityAdmin">
 
     <!-- Existing TextView for KINDIFY -->
-    <Button
-        android:id="@+id/btnViewEvent2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:backgroundTint="#F8A2A1"
-        android:onClick="viewEventClicked"
-        android:text="MY EVENT"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle2" />
-
     <TextView
         android:id="@+id/tvFreeText"
         android:layout_width="wrap_content"
@@ -49,20 +36,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/hgicon" />
 
-        <!-- Profile Image -->
-        <ImageView
-            android:id="@+id/profileImage"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:src="@drawable/dp1"
-            android:layout_gravity="top|start"
-            android:background="@drawable/admin_background"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+    <!-- Profile Image -->
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/dp1"
+        android:layout_gravity="top|start"
+        android:onClick="viewProfileClicked"
+        android:background="@drawable/admin_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- Name below Profile Image -->
+    <!-- Name below Profile Image -->
     <TextView
         android:id="@+id/profileName"
         android:layout_width="wrap_content"
@@ -117,35 +105,19 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- View Event Button -->
-
-    <!-- Logout Button -->
-
     <Button
         android:id="@+id/btnViewEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:backgroundTint="#F8A2A1"
-        android:onClick="viewEventClickedAdmin"
+        android:layout_marginTop="2dp"
+        android:onClick="viewEventClicked"
         android:text="VIEW EVENT"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle2" />
-
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:backgroundTint="#F8A2A1"
-        android:onClick="logoutClicked"
-        android:text="LOGOUT"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
