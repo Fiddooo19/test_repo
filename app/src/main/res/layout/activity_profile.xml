@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -63,7 +63,14 @@
             android:text="Change Picture"
             android:backgroundTint="#A68565"
             android:textColor="#FFFFFF"
-            android:onClick="openFileChooser" />
+            android:onClick="changeProfilePicture" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="saveProfile"
+            android:text="Save" />
     </LinearLayout>
 
     <!-- Profile Information -->
@@ -102,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="Username"
+            android:text="Username "
             android:textSize="16sp"
             android:textColor="#000000" />
 
@@ -128,7 +135,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Role:"
+            android:text="Point:"
             android:layout_gravity="center_vertical"
             android:fontFamily="@font/average"
             android:textColor="#000000"
@@ -136,11 +143,11 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvRole"
+            android:id="@+id/tvPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="@string/role"
+            android:text="Point Collected"
             android:textSize="16sp"
             android:textColor="#000000" />
 

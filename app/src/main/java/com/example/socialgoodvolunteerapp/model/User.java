@@ -12,7 +12,7 @@ public class User {
     private String role;
     private int is_active;
     private String secret;
-    private String imagePath;
+    private String image;
     private String profileImagePath;
 
     public int getId() {
@@ -47,12 +47,12 @@ public class User {
         this.password = password;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public String getImage() {
+        return image;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setImage(String image) {
+        this.image = image;
     }
 
 

@@ -10,6 +10,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface UserService {
 
@@ -35,6 +36,9 @@ public interface UserService {
 
     // Add the method for updating profile picture
     @FormUrlEncoded
-    @POST("users/updateProfilePicture")  // Replace with your actual API endpoint
-    Call<Void> updateUserProfilePicture(@Field("userId") String userId, @Field("imagePath") String imagePath);
+    @POST("users/{id}")  // Replace with your actual API endpoint
+    Call<User> updateUserProfilePicture(@Header("api-key") String api_key, @Path("id") int id , @Field("image") String image);
+
+    @GET("users/{id}")
+    Call<User> getUser (@Header("api-key") String api_key, @Path("id") int id);
 }

@@ -68,6 +68,6 @@ public interface EventService {
     Call<DeleteResponse> deleteParticipation(@Header("api-key") String apiKey, @Path("participation_id") int participation_id);
 
     @Multipart
-    @POST("upload") // Replace with the actual endpoint
-    Call<FileInfo> uploadFile(@Header("api-key") String token, @Part MultipartBody.Part file);
+    @POST("files") // Replace with the actual endpoint
+    Call<FileInfo> uploadFile(@Header("api-key") String apiKey, @Part MultipartBody.Part file);
 }
