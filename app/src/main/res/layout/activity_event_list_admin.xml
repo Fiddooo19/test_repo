@@ -53,16 +53,14 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="176dp"
         android:layout_marginEnd="179dp"
         android:layout_marginBottom="60dp"
+        android:backgroundTint="#EBA9A7"
         android:contentDescription="Add New Event"
         android:onClick="floatingAddEventClicked"
         android:src="@drawable/baseline_add_24"
-        android:visibility="visible"
-        android:backgroundTint="#EBA9A7" />
+        android:visibility="visible" />
 
 </RelativeLayout>
