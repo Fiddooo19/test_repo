@@ -45,6 +45,7 @@
             android:layout_marginStart="16dp"
             android:src="@drawable/dp1"
             android:layout_gravity="top|start"
+            android:onClick="viewProfileClicked"
             android:background="@drawable/admin_background"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -117,20 +118,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Logout Button -->
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#F8A2A1"
-        android:onClick="logoutClicked"
-        android:text="LOGOUT"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.948"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -144,7 +144,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Point:"
+            android:text="Role:"
             android:layout_gravity="center_vertical"
             android:fontFamily="@font/average"
             android:textColor="#000000"
@@ -152,11 +152,11 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvPassword"
+            android:id="@+id/tvRole"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="Point Collected"
+            android:text="Role"
             android:textSize="16sp"
             android:textColor="#000000" />
     </LinearLayout>
