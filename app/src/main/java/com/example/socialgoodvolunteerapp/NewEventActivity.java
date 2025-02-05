@@ -134,7 +134,7 @@ public class NewEventActivity extends AppCompatActivity {
      * Called when Add Event button is clicked
      * @param v
      */
-    public void addNewEvents(View v) {
+    public void addNewEvent(View v) {
 
         if (uri != null && !uri.getPath().isEmpty()) {
             // Upload file first
