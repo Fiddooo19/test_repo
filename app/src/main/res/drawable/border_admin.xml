@@ -3,5 +3,5 @@
     <stroke
         android:color="#EDAAA8"
         android:width="8dp" />
-        <corners android:radius="0dp"/>
+        <corners android:radius="3dp"/>
 </shape>

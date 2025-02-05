@@ -12,25 +12,28 @@
     android:background="@drawable/bg18"
     >
 
+    <!-- Title Section -->
     <TextView
         android:layout_columnSpan="2"
         android:layout_gravity="center_horizontal"
         android:text="Add New Event"
-        android:textSize="32dip" />
+        android:textSize="32sp" />
 
     <TextView
         android:layout_columnSpan="2"
         android:layout_gravity="center"
         android:text="Enter event information"
-        android:textSize="16dip" />
+        android:textSize="16sp" />
 
+    <!-- Form Section -->
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical" >
 
+        <!-- Event Name -->
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
@@ -38,7 +41,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="Event Name:" />
+                android:text="Event Name:"
+                android:gravity="start" />
 
             <EditText
                 android:id="@+id/tvEventName"
@@ -47,8 +51,9 @@
                 android:layout_weight="0.75" />
         </LinearLayout>
 
+        <!-- Description -->
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
@@ -56,7 +61,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="Description:" />
+                android:text="Description:"
+                android:gravity="start" />
 
             <EditText
                 android:id="@+id/tvDescription"
@@ -67,8 +73,9 @@
                 android:lines="2" />
         </LinearLayout>
 
+        <!-- Location -->
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
@@ -76,7 +83,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="Location:" />
+                android:text="Location:"
+                android:gravity="start" />
 
             <EditText
                 android:id="@+id/tvLocation"
@@ -85,8 +93,9 @@
                 android:layout_weight="0.75" />
         </LinearLayout>
 
+        <!-- Category -->
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
@@ -94,7 +103,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="Category:" />
+                android:text="Category:"
+                android:gravity="start" />
 
             <EditText
                 android:id="@+id/tvCategory"
@@ -103,22 +113,26 @@
                 android:layout_weight="0.75" />
         </LinearLayout>
 
+        <!-- Date Picker -->
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:text="Date:" />
+                android:text="Date:"
+                android:gravity="start" />
 
             <TextView
                 android:id="@+id/tvDate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
-                android:text="YYYY-MM-DD" />
+                android:text="YYYY-MM-DD"
+                android:gravity="start" />
 
             <Button
                 android:layout_width="0dp"
@@ -126,22 +140,19 @@
                 android:text="Pick Date"
                 android:layout_weight="0.35"
                 android:onClick="showDatePickerDialog" />
-
         </LinearLayout>
 
+        <!-- Add Event Button -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content" >
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Add Event"
                 android:onClick="addNewEvent" />
-
         </LinearLayout>
-
 
     </LinearLayout>
 

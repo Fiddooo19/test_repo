@@ -9,7 +9,10 @@
     android:columnOrderPreserved="false"
     android:columnCount="2"
     android:layout_marginTop="40dp"
-    >
+    android:background="@drawable/bg18"
+    android:layout_gravity="fill"
+    android:scaleType="centerCrop">
+
 
     <TextView
         android:layout_columnSpan="2"
