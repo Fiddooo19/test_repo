@@ -3,7 +3,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="12dp"
-    android:background="#F8E9D8">
+    android:background="#FFFFFF">
 
     <!-- Event Thumbnail -->
     <ImageView
@@ -11,7 +11,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/kindify"
+        android:src="@drawable/volunteer"
         android:layout_marginEnd="16dp"
         android:background="@drawable/imgcorner" />
 
@@ -28,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
+            android:fontFamily="@font/average"
             android:maxLines="1"
             android:text="Event Title Name"
             android:textColor="@color/black"
@@ -45,7 +46,7 @@
             android:text="Category"
             android:textColor="#000000"
             android:textSize="14sp"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold" />
 
         <!-- Event Location -->
         <TextView
@@ -53,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvCategory"
+            android:textColor="#000000"
             android:text="Location" />
 
     </LinearLayout>

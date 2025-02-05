@@ -1,12 +1,13 @@
 package com.example.socialgoodvolunteerapp;
 
+
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
-import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,13 +17,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.DialogFragment;
 
-import com.bumptech.glide.Glide;
 import com.example.socialgoodvolunteerapp.model.Event;
+import com.example.socialgoodvolunteerapp.model.Participation;
+//import com.example.socialgoodvolunteerapp.model.Category;
 import com.example.socialgoodvolunteerapp.model.User;
 import com.example.socialgoodvolunteerapp.remote.ApiUtils;
 import com.example.socialgoodvolunteerapp.remote.EventService;
+import com.example.socialgoodvolunteerapp.remote.ParticipationService;
 import com.example.socialgoodvolunteerapp.sharedpref.SharedPrefManager;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,17 +42,20 @@ public class EventDetailsActivity extends AppCompatActivity {
 
     private EventService eventService;
 
+    private Event currentPos;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_event_details);
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
 
         // Back button click listener
         ImageView backButton = findViewById(R.id.btnBack);
@@ -51,54 +64,58 @@ public class EventDetailsActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+        // retrieve borrow details based on selected id
 
-        // Retrieve event details based on selected id
+        // get book id sent by BookListActivity, -1 if not found
         Intent intent = getIntent();
-        int eventId = intent.getIntExtra("event_id", -1);
+        int event_id = intent.getIntExtra("event_id", -1);
 
-        // Get user info from SharedPreferences
+        // get user info from SharedPreferences
         SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
         User user = spm.getUser();
         String token = user.getToken();
 
-        // Get event service instance
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        // get book service instance
         eventService = ApiUtils.getEventService();
 
-        // Execute the API query. Send the token and event id
-        eventService.getEvent(token, eventId).enqueue(new Callback<Event>() {
+        // execute the API query. send the token and book id
+        eventService.getEvent(token, event_id).enqueue(new Callback<Event>() {
+
             @Override
             public void onResponse(Call<Event> call, Response<Event> response) {
+                // for debug purpose
                 Log.d("MyApp:", "Response: " + response.raw().toString());
 
                 if (response.code() == 200) {
-                    // Server returned success
-                    Event event = response.body();
+                    // server return success
 
-                    // Get references to the view elements
+                    // get event object from response
+                    currentPos = response.body();
+
+                    // get references to the view elements
                     TextView eventName = findViewById(R.id.tvEventName);
                     TextView tvDate = findViewById(R.id.tvDate);
                     TextView tvCategory = findViewById(R.id.tvCategory);
                     TextView tvLocation = findViewById(R.id.tvLocation);
                     TextView tvDescription = findViewById(R.id.tvDescription);
-                    ImageView eventImage = findViewById(R.id.event_image); // Added ImageView for event image
 
-                    // Set values
-                    eventName.setText(event.getEvent_name());
-                    tvDate.setText(event.getDate());
-                    tvCategory.setText(event.getCategory());
-                    tvLocation.setText(event.getLocation());
-                    tvDescription.setText(event.getDescription());
+                    // set values
+                    eventName.setText(currentPos.getEvent_name());
+                    tvDate.setText(currentPos.getDate());
+                    tvCategory.setText(currentPos.getCategory());
+                    tvLocation.setText(currentPos.getLocation());
+                    tvDescription.setText(currentPos.getDescription());
 
-                    // Load event image using Glide
-                    Glide.with(getApplicationContext())
-                            .load(event.getImage())
-                            .into(eventImage);
-                } else if (response.code() == 401) {
-                    // Unauthorized error. Invalid token, ask user to relogin
+                }
+                else if (response.code() == 401) {
+                    // unauthorized error. invalid token, ask user to relogin
                     Toast.makeText(getApplicationContext(), "Invalid session. Please login again", Toast.LENGTH_LONG).show();
                     clearSessionAndRedirect();
-                } else {
-                    // Server returned other error
+                }
+                else {
+                    // server return other error
                     Toast.makeText(getApplicationContext(), "Error: " + response.message(), Toast.LENGTH_LONG).show();
                     Log.e("MyApp: ", response.toString());
                 }
@@ -106,30 +123,77 @@ public class EventDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Event> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Error connecting", Toast.LENGTH_LONG).show();
+                Toast.makeText(null, "Error connecting", Toast.LENGTH_LONG).show();
             }
         });
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Get the menu inflater
-        MenuInflater inflater = getMenuInflater();
-        // Inflate the menu using our XML menu file id, options_menu
-        inflater.inflate(R.menu.options_menu, menu);
-        return true;
     }
 
     public void clearSessionAndRedirect() {
-        // Clear the shared preferences
+        // clear the shared preferences
         SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
         spm.logout();
 
-        // Terminate this activity
+        // terminate this MainActivity
         finish();
 
-        // Forward to Login Page
+        // forward to Login Page
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+
+    }
+    public void JoinEvent(View view) {
+        // get values in form
+        SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
+        User user = spm.getUser();
+
+        int user_id = user.getId();
+        int event_id = currentPos.getEvent_id();
+
+        // send request to add new borrow record to the REST API
+        EventService eventService = ApiUtils.getEventService();
+        Call<Participation> call = eventService.addParticipation(user.getToken(), user_id, event_id);
+
+        // execute
+        call.enqueue(new Callback<Participation>() {
+            @Override
+            public void onResponse(Call<Participation> call, Response<Participation> response) {
+
+                // for debug purpose
+                Log.d("MyApp:", "Response: " + response.raw().toString());
+
+                if (response.code() == 201) {
+                    // borrow record added successfully
+                    Participation addedParticipation = response.body();
+                    // display message
+                    Toast.makeText(getApplicationContext(),
+                            addedParticipation.getEvent().getEvent_name() + " successfully joined!.",
+                            Toast.LENGTH_LONG).show();
+
+                    // end this activity and forward user to BookListActivity
+                    Intent intent = new Intent(getApplicationContext(), MainActivityUser.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else if (response.code() == 401) {
+                    // invalid token, ask user to relogin
+                    Toast.makeText(getApplicationContext(), "Invalid session. Please login again", Toast.LENGTH_LONG).show();
+                    clearSessionAndRedirect();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Error: " + response.message(), Toast.LENGTH_LONG).show();
+                    // server return other error
+                    Log.e("MyApp: ", response.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Participation> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),"Error [" + t.getMessage() + "]",
+                        Toast.LENGTH_LONG).show();
+                // for debug purpose
+                Log.d("MyApp:", "Error: " + t.getCause().getMessage());
+            }
+        });
     }
 }
