@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5B5A5A"
+    android:background="@drawable/bg17"
     android:id="@+id/main"
     tools:context=".EventListActivityAdmin">
 
@@ -14,14 +14,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="16dp"
-        android:background="#F0E5DC">
+        android:background="#EBA9A7"
+        android:layout_alignParentTop="true">
 
         <!-- Back Button -->
         <ImageView
             android:id="@+id/btnBack"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@drawable/backk"
+            android:src="@drawable/backadmin"
             android:contentDescription="Back"
             android:layout_gravity="center_vertical" />
 
@@ -31,9 +32,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:text="EVENT"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/font1"
+            android:textSize="30sp"
             android:layout_gravity="center_vertical" />
     </LinearLayout>
 
@@ -43,23 +44,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/headerLayout"
+        android:layout_marginTop="3dp"
         android:clipToPadding="false"
-        android:paddingBottom="72dp" /> <!-- Extra padding to prevent overlap with FAB -->
+        android:paddingBottom="72dp" />
 
-    <!-- Floating Action Button -->
+    <!-- Floating Action Button (FAB) -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:visibility="visible"
+        android:layout_marginStart="176dp"
+        android:layout_marginEnd="179dp"
+        android:layout_marginBottom="60dp"
         android:contentDescription="Add New Event"
         android:onClick="floatingAddEventClicked"
-        android:src="@drawable/baseline_add_24" />
+        android:src="@drawable/baseline_add_24"
+        android:visibility="visible"
+        android:backgroundTint="#EBA9A7" />
 
 </RelativeLayout>

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="#FFFFFF"
+    android:background="@drawable/bg16"
     tools:context=".EventDetailsActivityAdmin">
 
     <!-- Top Bar with Back Button and Camera Icon -->
@@ -15,7 +15,7 @@
         android:layout_height="32dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/backk"
+        android:src="@drawable/backadmin"
         android:contentDescription="Back"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -24,15 +24,15 @@
         android:id="@+id/page_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/cursive2"
         android:text="Details"
-        android:textColor="#000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnBack"
+        android:textColor="#FFFFFF"
+        android:textSize="35sp"
         app:layout_constraintEnd_toStartOf="@id/camera_icon"
-        app:layout_constraintHorizontal_bias="0.5" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toEndOf="@id/btnBack"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/camera_icon"
@@ -40,7 +40,7 @@
         android:layout_height="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/menu"
+        android:src="@drawable/dots"
         android:contentDescription="Camera"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -52,10 +52,12 @@
         android:layout_height="250dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/volunteer"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
+        android:background="@drawable/border_admin"
         app:layout_constraintTop_toBottomOf="@id/btnBack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 
     <!-- Event Name and Favorite Icon -->
     <TextView
@@ -64,9 +66,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Event"
-        android:textSize="22sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:fontFamily="@font/font2"
+        android:textSize="25sp"
+        android:textColor="@color/white"
         android:layout_marginLeft="15dp"
         app:layout_constraintTop_toBottomOf="@id/event_image"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,16 +87,18 @@
 
     <TextView
         android:id="@+id/tvEventName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Event name"
         android:textColor="#000000"
         android:textSize="20sp"
-        android:fontFamily="@font/average"
+        android:fontFamily="@font/font1"
         android:paddingStart="15dp"
         android:layout_marginTop="5dp"
         app:layout_constraintTop_toBottomOf="@id/event_name"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
     <!-- Event Info -->
     <LinearLayout
@@ -102,7 +107,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:orientation="horizontal"
-        android:background="#A68565"
+        android:background="#EDAAA8"
         app:layout_constraintTop_toBottomOf="@+id/event_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -119,15 +124,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Date / Time"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:fontFamily="@font/font2"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="mm/dd/yy"
+                android:fontFamily="@font/font1"
                 android:textColor="#3A3737"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -143,15 +150,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Category"
-                android:textSize="18sp"
+                android:fontFamily="@font/font2"
                 android:textStyle="bold"
-                android:textColor="@color/black" />
+                android:textSize="18sp"
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/tvCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="category"
+                android:fontFamily="@font/font1"
                 android:textColor="#3A3737"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -164,7 +173,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
-        android:background="#A68565"
+        android:background="#EDAAA8"
         app:layout_constraintTop_toBottomOf="@id/event_info"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -173,7 +182,7 @@
         <ImageView
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/location"
+            android:src="@drawable/loc"
             android:contentDescription="Owner Image"
             android:layout_marginEnd="8dp" />
 
@@ -186,15 +195,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Location"
-                android:textSize="18sp"
+                android:fontFamily="@font/font2"
                 android:textStyle="bold"
-                android:textColor="@color/black" />
+                android:textSize="18sp"
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/tvLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Location"
+                android:fontFamily="@font/font1"
                 android:textColor="#3A3737"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -209,6 +220,7 @@
         android:text="description.."
         android:textSize="18sp"
         android:textColor="#3A3737"
+        android:fontFamily="@font/font1"
         app:layout_constraintTop_toBottomOf="@id/organizer_info"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
