@@ -1,6 +1,7 @@
 package com.example.socialgoodvolunteerapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,18 +19,29 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.socialgoodvolunteerapp.model.Event;
+import com.example.socialgoodvolunteerapp.model.FileInfo;
 import com.example.socialgoodvolunteerapp.model.User;
 import com.example.socialgoodvolunteerapp.remote.ApiUtils;
 import com.example.socialgoodvolunteerapp.remote.EventService;
 import com.example.socialgoodvolunteerapp.sharedpref.SharedPrefManager;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EventDetailsActivityAdmin extends AppCompatActivity {
 
+    private static final int PICK_IMAGE = 1;
     private EventService eventService;
+    private Uri imageUri;
+    private Event event;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,63 +55,43 @@ public class EventDetailsActivityAdmin extends AppCompatActivity {
             return insets;
         });
 
-        // Initialize UI components
         ImageView backButton = findViewById(R.id.btnBack);
-        ImageView eventImage = findViewById(R.id.event_image); // Added ImageView for event image
+        ImageView eventImage = findViewById(R.id.event_image);
 
-        // Back button click listener
-        backButton.setOnClickListener(view -> {
-            finish();
-        });
+        backButton.setOnClickListener(view -> finish());
 
-        // Retrieve event details based on selected id
         Intent intent = getIntent();
         int eventId = intent.getIntExtra("event_id", -1);
 
-        // Get user info from SharedPreferences
         SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
         User user = spm.getUser();
         String token = user.getToken();
 
-        // Get event service instance
         eventService = ApiUtils.getEventService();
 
-        // Execute the API query. Send the token and event id
         eventService.getEvent(token, eventId).enqueue(new Callback<Event>() {
             @Override
             public void onResponse(Call<Event> call, Response<Event> response) {
-                Log.d("MyApp:", "Response: " + response.raw().toString());
+                if (response.isSuccessful()) {
+                    event = response.body();
 
-                if (response.code() == 200) {
-                    // Server returned success
-                    Event event = response.body();
-
-                    // Get references to the view elements
                     TextView eventName = findViewById(R.id.tvEventName);
                     TextView tvDate = findViewById(R.id.tvDate);
                     TextView tvCategory = findViewById(R.id.tvCategory);
                     TextView tvLocation = findViewById(R.id.tvLocation);
                     TextView tvDescription = findViewById(R.id.tvDescription);
 
-                    // Set values
                     eventName.setText(event.getEvent_name());
                     tvDate.setText(event.getDate());
                     tvCategory.setText(event.getCategory());
                     tvLocation.setText(event.getLocation());
                     tvDescription.setText(event.getDescription());
 
-                    // Load event image using Glide
                     Glide.with(getApplicationContext())
                             .load(event.getImage())
                             .into(eventImage);
-                }
-                else if (response.code() == 401) {
-                    Toast.makeText(getApplicationContext(), "Invalid session. Please login again", Toast.LENGTH_LONG).show();
-                    clearSessionAndRedirect();
-                }
-                else {
+                } else {
                     Toast.makeText(getApplicationContext(), "Error: " + response.message(), Toast.LENGTH_LONG).show();
-                    Log.e("MyApp: ", response.toString());
                 }
             }
 
@@ -108,6 +100,69 @@ public class EventDetailsActivityAdmin extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Error connecting", Toast.LENGTH_LONG).show();
             }
         });
+
+        eventImage.setOnClickListener(v -> choosePhoto());
+    }
+
+    private void choosePhoto() {
+        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, PICK_IMAGE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && data != null) {
+            imageUri = data.getData();
+            uploadFile(imageUri);
+        }
+    }
+
+    private void uploadFile(Uri fileUri) {
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(fileUri);
+            byte[] fileBytes = getBytesFromInputStream(inputStream);
+
+            SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
+            User user = spm.getUser();
+
+            RequestBody requestFile = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)), fileBytes);
+            MultipartBody.Part body = MultipartBody.Part.createFormData("file", "uploaded_image.jpg", requestFile);
+
+            Call<FileInfo> call = eventService.uploadFile(user.getToken(), body);
+            call.enqueue(new Callback<FileInfo>() {
+                @Override
+                public void onResponse(Call<FileInfo> call, Response<FileInfo> response) {
+                    if (response.isSuccessful()) {
+                        FileInfo fi = response.body();
+                        event.setImage(fi.getFile());
+                        Toast.makeText(getApplicationContext(), "File uploaded successfully", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "File upload failed", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<FileInfo> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "Error uploading file", Toast.LENGTH_LONG).show();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Error preparing file for upload", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private byte[] getBytesFromInputStream(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
+        int bufferSize = 1024;
+        byte[] buffer = new byte[bufferSize];
+
+        int len;
+        while ((len = inputStream.read(buffer)) != -1) {
+            byteBuffer.write(buffer, 0, len);
+        }
+        return byteBuffer.toByteArray();
     }
 
     @Override
@@ -115,15 +170,5 @@ public class EventDetailsActivityAdmin extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.options_menu, menu);
         return true;
-    }
-
-    public void clearSessionAndRedirect() {
-        SharedPrefManager spm = new SharedPrefManager(getApplicationContext());
-        spm.logout();
-
-        finish();
-
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
     }
 }

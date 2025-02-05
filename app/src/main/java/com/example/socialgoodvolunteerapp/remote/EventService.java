@@ -3,17 +3,21 @@ package com.example.socialgoodvolunteerapp.remote;
 import com.example.socialgoodvolunteerapp.model.DeleteResponse;
 import com.example.socialgoodvolunteerapp.model.Event;
 import com.example.socialgoodvolunteerapp.model.Participation;
-import com.example.socialgoodvolunteerapp.Status;
+import com.example.socialgoodvolunteerapp.model.FileInfo;
+
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -62,4 +66,8 @@ public interface EventService {
 
     @DELETE("participations/{participation_id}")
     Call<DeleteResponse> deleteParticipation(@Header("api-key") String apiKey, @Path("participation_id") int participation_id);
+
+    @Multipart
+    @POST("upload") // Replace with the actual endpoint
+    Call<FileInfo> uploadFile(@Header("api-key") String token, @Part MultipartBody.Part file);
 }
