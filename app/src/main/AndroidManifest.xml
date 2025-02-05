@@ -66,6 +66,12 @@
             android:name=".MyEventActivityList"
             android:exported="false" />
         <activity
+            android:name=".EventListActivityAdminViewOnly"
+            android:exported="false" />
+        <activity
+            android:name=".EventDetailsActivityAdminViewOnly"
+            android:exported="false" />
+        <activity
             android:name=".MainActivityUser"
             android:exported="true" /> <!-- Splash Screen -->
         <activity

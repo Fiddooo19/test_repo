@@ -109,4 +109,10 @@ public class MainActivityAdmin extends AppCompatActivity {
         Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
     }
+
+    public void viewEventClickedAdmin(View view) {
+        // forward to View Event Page
+        Intent intent = new Intent(this, EventListActivityAdminViewOnly.class);
+        startActivity(intent);
+    }
 }
