@@ -12,4 +12,5 @@
     <string name="Login">Login</string>
     <string name="don_t_have_account_register">Don\'t Have Account? Register</string>
     <string name="logout">Logout</string>
+    <string name="role">Role</string>
 </resources>

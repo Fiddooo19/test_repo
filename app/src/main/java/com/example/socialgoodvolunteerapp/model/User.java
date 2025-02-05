@@ -13,6 +13,7 @@ public class User {
     private int is_active;
     private String secret;
     private String imagePath;
+    private String profileImagePath;
 
     public int getId() {
         return id;
@@ -93,6 +94,14 @@ public class User {
 
     public void setSecret(String secret) {
         this.secret = secret;
+    }
+
+    public String getProfileImagePath() {
+        return profileImagePath;
+    }
+
+    public void setProfileImagePath(String profileImagePath) {
+        this.profileImagePath = profileImagePath;
     }
 
 

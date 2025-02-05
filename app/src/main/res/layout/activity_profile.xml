@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -63,7 +63,7 @@
             android:text="Change Picture"
             android:backgroundTint="#A68565"
             android:textColor="#FFFFFF"
-            android:onClick="changeProfilePicture" />
+            android:onClick="openFileChooser" />
     </LinearLayout>
 
     <!-- Profile Information -->
@@ -102,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="Username "
+            android:text="Username"
             android:textSize="16sp"
             android:textColor="#000000" />
 
@@ -128,7 +128,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Point:"
+            android:text="Role:"
             android:layout_gravity="center_vertical"
             android:fontFamily="@font/average"
             android:textColor="#000000"
@@ -136,11 +136,11 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvPassword"
+            android:id="@+id/tvRole"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="Point Collected"
+            android:text="@string/role"
             android:textSize="16sp"
             android:textColor="#000000" />
 

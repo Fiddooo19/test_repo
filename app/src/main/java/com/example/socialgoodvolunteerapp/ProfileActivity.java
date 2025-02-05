@@ -25,7 +25,7 @@ import retrofit2.Response;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private TextView tvUsername, tvEmail, tvPassword;
+    private TextView tvUsername, tvEmail, tvRole;
     private Button btnLogout, btnChangePicture;
     private ImageView imgProfilePicture;
     private User user;
@@ -41,11 +41,10 @@ public class ProfileActivity extends AppCompatActivity {
         // Initialize the UserService
         userService = ApiUtils.getUserService();  // Use ApiUtils to get the UserService instance
 
-
         // Get references to the UI elements
         tvUsername = findViewById(R.id.tvUsername);
         tvEmail = findViewById(R.id.tvEmail);
-        tvPassword = findViewById(R.id.tvPassword);
+        tvRole = findViewById(R.id.tvRole);
         btnLogout = findViewById(R.id.btnLogout);
         imgProfilePicture = findViewById(R.id.imgProfilePicture);
         btnChangePicture = findViewById(R.id.btnChangePicture);
@@ -58,7 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
         if (user != null) {
             tvUsername.setText(user.getUsername());
             tvEmail.setText(user.getEmail());
-            tvPassword.setText(user.getPassword());
+            tvRole.setText(user.getRole());
 
             // Load the profile picture if available
             String imagePath = user.getImagePath();  // Get the image path from the user object
@@ -76,10 +75,22 @@ public class ProfileActivity extends AppCompatActivity {
         // Back button click listener
         ImageView backButton = findViewById(R.id.btnBack);
         backButton.setOnClickListener(view -> {
-            Intent intent = new Intent(ProfileActivity.this, MainActivityUser.class);
-            startActivity(intent);
-            finish();
+            Intent intent;
+
+            // Check if user role is admin or user and navigate accordingly
+            if (user != null) {
+                if (user.getRole().equalsIgnoreCase("admin")) {
+                    // If role is admin, go to MainActivityAdmin
+                    intent = new Intent(ProfileActivity.this, MainActivityAdmin.class);
+                } else {
+                    // If role is user, go to MainActivityUser
+                    intent = new Intent(ProfileActivity.this, MainActivityUser.class);
+                }
+                startActivity(intent);
+                finish();  // Close ProfileActivity after navigating
+            }
         });
+
     }
 
     // Logout function
@@ -155,6 +166,4 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }

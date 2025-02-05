@@ -15,6 +15,7 @@ public class SharedPrefManager {
     private static final String KEY_EMAIL = "keyemail";
     private static final String KEY_TOKEN = "keytoken";
     private static final String KEY_ROLE = "keyrole";
+    private static final String KEY_PROFILE_IMAGE_PATH = "profile_image_path";
 
     private final Context mCtx;
 
@@ -35,6 +36,8 @@ public class SharedPrefManager {
         editor.putString(KEY_EMAIL, user.getEmail());
         editor.putString(KEY_TOKEN, user.getToken());
         editor.putString(KEY_ROLE, user.getRole());
+        editor.putString(KEY_PROFILE_IMAGE_PATH, user.getProfileImagePath());
+
         editor.apply();
     }
 
@@ -60,6 +63,7 @@ public class SharedPrefManager {
         user.setEmail(sharedPreferences.getString(KEY_EMAIL, null));
         user.setToken(sharedPreferences.getString(KEY_TOKEN, null));
         user.setRole(sharedPreferences.getString(KEY_ROLE, null));
+        user.setProfileImagePath(sharedPreferences.getString(KEY_PROFILE_IMAGE_PATH, null));
 
         return user;
     }
