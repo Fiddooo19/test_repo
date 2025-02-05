@@ -8,6 +8,19 @@
     tools:context=".MainActivityAdmin">
 
     <!-- Existing TextView for KINDIFY -->
+    <Button
+        android:id="@+id/btnViewEvent2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:backgroundTint="#F8A2A1"
+        android:onClick="viewEventClicked"
+        android:text="MY EVENT"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle2" />
+
     <TextView
         android:id="@+id/tvFreeText"
         android:layout_width="wrap_content"
@@ -104,20 +117,22 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- View Event Button -->
+
+    <!-- Logout Button -->
+
     <Button
         android:id="@+id/btnViewEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:onClick="viewEventClicked"
+        android:layout_marginTop="56dp"
+        android:backgroundTint="#F8A2A1"
+        android:onClick="viewEventClickedAdmin"
         android:text="VIEW EVENT"
         android:textColor="@color/white"
-        android:backgroundTint="#F8A2A1"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tvTitle2" />
 
-    <!-- Logout Button -->
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
