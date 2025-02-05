@@ -102,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:orientation="horizontal"
-        android:background="#A68565"
+        android:background="#DCCFC3"
         app:layout_constraintTop_toBottomOf="@+id/event_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -118,7 +118,7 @@
                 android:id="@+id/event_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Date / Time"
+                android:text="Date and Time"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -128,8 +128,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="mm/dd/yy"
-                android:textColor="#3A3737"
-                android:textSize="14sp" />
+                android:fontFamily="@font/average"
+                android:textColor="#000000"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -152,8 +153,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="category"
-                android:textColor="#3A3737"
-                android:textSize="14sp" />
+                android:fontFamily="@font/average"
+                android:textColor="#000000"
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -164,7 +166,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
-        android:background="#A68565"
+        android:background="#DCCFC3"
         app:layout_constraintTop_toBottomOf="@id/event_info"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -195,8 +197,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Location"
-                android:textColor="#3A3737"
-                android:textSize="14sp" />
+                android:fontFamily="@font/average"
+                android:textColor="#000000"
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -208,7 +211,8 @@
         android:layout_margin="16dp"
         android:text="description.."
         android:textSize="18sp"
-        android:textColor="#3A3737"
+        android:textColor="#000000"
+        android:fontFamily="@font/average"
         app:layout_constraintTop_toBottomOf="@id/organizer_info"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
