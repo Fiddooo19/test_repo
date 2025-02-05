@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ADA7A7"
+    android:background="#DCCFC3"
     android:id="@+id/user"
     tools:context=".MainActivityUser">
 
@@ -21,33 +21,22 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/acc_ic"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/account"
             android:onClick="viewProfileClicked"
-            android:src="@drawable/acc_ic"/>
+            android:src="@drawable/account"/>
 
         <TextView
             android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hi,"
-            android:textSize="16sp"
-            android:textColor="#000000"
+            android:textSize="19sp"
+            android:textColor="#402E22"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"/>
 
-        <TextView
-            android:id="@+id/tvSearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Search events, concerts and festival"
-            android:padding="10dp"
-            android:textColorHint="#1D1B18"
-            android:textColor="#1D1B18"
-            android:background="@drawable/rounded_edittext"
-            android:layout_marginTop="100dp"
-            />
 
     </LinearLayout>
 
@@ -61,7 +50,7 @@
         android:textStyle="bold"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:textColor="#000000"
+        android:textColor="#402E22"
         app:layout_constraintTop_toBottomOf="@id/headerLayout"
         app:layout_constraintStart_toStartOf="parent"/>
 
