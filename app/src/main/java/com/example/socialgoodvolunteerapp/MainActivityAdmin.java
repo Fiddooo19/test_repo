@@ -39,7 +39,7 @@ public class MainActivityAdmin extends AppCompatActivity {
         });
 
         // Initialize views
-        cdUsername = findViewById(R.id.cdUsername);
+        cdUsername = findViewById(R.id.profileName);
         ImageView profileImageView = findViewById(R.id.profileImage);
 
         // Retrieve user data from SharedPreferences
