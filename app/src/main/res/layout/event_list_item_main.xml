@@ -3,13 +3,13 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="12dp"
-    android:background="#FFFFFF">
+    android:background="@drawable/bg16">
 
     <!-- Event Thumbnail -->
     <ImageView
         android:id="@+id/eventImage"
-        android:layout_width="230dp"
-        android:layout_height="130dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/imgcorner"
         android:scaleType="centerCrop"
@@ -18,44 +18,47 @@
 
     <!-- Event Text Details -->
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/border_admin"
+        android:padding="8dp"> <!-- Added padding for spacing -->
 
-    <!-- Event Name -->
-    <TextView
-    android:id="@+id/tvEventName"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:ellipsize="end"
-    android:maxLines="1"
-    android:fontFamily="@font/average"
-    android:text="Event Title Name"
-    android:textColor="@color/black"
-    android:textSize="17sp"
-    android:textStyle="bold" />
+        <!-- Event Name -->
+        <TextView
+            android:id="@+id/tvEventName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:fontFamily="@font/average"
+            android:text="Event Title Name"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold" />
 
-<!-- Event Category -->
-<TextView
-    android:id="@+id/tvCategory"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="4dp"
-    android:ellipsize="end"
-    android:maxLines="1"
-    android:text="Category"
-    android:textColor="#000000"
-    android:textSize="14sp"
-    android:textStyle="bold" />
+        <!-- Event Category -->
+        <TextView
+            android:id="@+id/tvCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Category"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
-<!-- Event Location -->
-<TextView
-    android:id="@+id/tvLocation"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textColor="#000000"
-    android:text="Location" />
+        <!-- Event Location -->
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="Location"
+            android:textSize="14sp" /> <!-- Added textSize for consistency -->
 
-</LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

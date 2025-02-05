@@ -18,13 +18,16 @@
         android:layout_columnSpan="2"
         android:layout_gravity="center_horizontal"
         android:text="Update Event"
-        android:textSize="32dip" />
+        android:fontFamily="@font/cursive1"
+        android:textSize="40dip" />
 
     <TextView
         android:layout_columnSpan="2"
         android:layout_gravity="center"
         android:text="update event information"
-        android:textSize="16dip" />
+        android:fontFamily="@font/font2"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -40,6 +43,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
+                android:fontFamily="@font/font2"
+                android:textColor="@color/white"
                 android:text="Event Name:" />
 
             <EditText
@@ -58,6 +63,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
+                android:fontFamily="@font/font2"
+                android:textColor="@color/white"
                 android:text="Description:" />
 
             <EditText
@@ -78,6 +85,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
+                android:fontFamily="@font/font2"
+                android:textColor="@color/white"
                 android:text="Location:" />
 
             <EditText
@@ -96,6 +105,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
+                android:fontFamily="@font/font2"
+                android:textColor="@color/white"
                 android:text="Category:" />
 
             <EditText
@@ -113,6 +124,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
+                android:fontFamily="@font/font2"
+                android:textColor="@color/white"
                 android:text="Date:" />
 
             <TextView
@@ -127,6 +140,8 @@
                 android:layout_height="wrap_content"
                 android:text="Pick Date"
                 android:layout_weight="0.35"
+                android:backgroundTint="#F8A2A1"
+                android:textColor="@color/white"
                 android:onClick="showDatePickerDialog" />
 
         </LinearLayout>
@@ -140,6 +155,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Update Event"
+                android:backgroundTint="#F8A2A1"
+                android:textColor="@color/white"
                 android:onClick="updateEvent" />
 
         </LinearLayout>

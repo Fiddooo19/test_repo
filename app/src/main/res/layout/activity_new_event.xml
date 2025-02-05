@@ -17,12 +17,16 @@
         android:layout_columnSpan="2"
         android:layout_gravity="center_horizontal"
         android:text="Add New Event"
-        android:textSize="32sp" />
+        android:fontFamily="@font/cursive2"
+        android:textColor="@color/white"
+        android:textSize="40sp" />
 
     <TextView
         android:layout_columnSpan="2"
         android:layout_gravity="center"
         android:text="Enter event information"
+        android:fontFamily="@font/font2"
+        android:textColor="@color/white"
         android:textSize="16sp" />
 
     <!-- Form Section -->
@@ -42,6 +46,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:text="Event Name:"
+                android:fontFamily="@font/font2"
+                android:textColor="@color/white"
                 android:gravity="start" />
 
             <EditText
@@ -62,6 +68,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:text="Description:"
+                android:fontFamily="@font/font2"
+                android:textColor="@color/white"
                 android:gravity="start" />
 
             <EditText
@@ -84,6 +92,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:text="Location:"
+                android:fontFamily="@font/font2"
+                android:textColor="@color/white"
                 android:gravity="start" />
 
             <EditText
@@ -104,6 +114,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:text="Category:"
+                android:fontFamily="@font/font2"
+                android:textColor="@color/white"
                 android:gravity="start" />
 
             <EditText
@@ -124,6 +136,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:text="Date:"
+                android:fontFamily="@font/font2"
+                android:textColor="@color/white"
                 android:gravity="start" />
 
             <TextView
@@ -138,7 +152,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Pick Date"
+                android:textColor="@color/white"
+                android:fontFamily="@font/font3"
                 android:layout_weight="0.35"
+                android:backgroundTint="#F8A2A1"
                 android:onClick="showDatePickerDialog" />
         </LinearLayout>
 
@@ -151,6 +168,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Add Event"
+                android:fontFamily="@font/font3"
+                android:textColor="@color/white"
+                android:backgroundTint="#F8A2A1"
                 android:onClick="addNewEvent" />
         </LinearLayout>
 
