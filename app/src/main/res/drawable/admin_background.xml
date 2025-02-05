@@ -1,5 +1,5 @@
-<!-- res/drawable/btn_brown.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-        <solid android:color="#8B4513" /> <!-- Brown color -->
-        <corners android:radius="8dp" /> <!-- Optional: adds rounded corners -->
+        <solid android:color="#F8A2A1" /> <!-- Color inside the circle -->
+        <corners android:radius="30dp" /> <!-- Make the shape circular with radius -->
 </shape>
