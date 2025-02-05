@@ -49,9 +49,9 @@
     <ImageView
         android:id="@+id/event_image"
         android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/roundedbutton"
+        android:src="@drawable/volunteer"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toBottomOf="@id/btnBack"
         app:layout_constraintStart_toStartOf="parent"
