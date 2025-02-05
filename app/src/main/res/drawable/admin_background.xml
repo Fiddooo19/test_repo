@@ -1,0 +1,5 @@
+<!-- res/drawable/btn_brown.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+        <solid android:color="#8B4513" /> <!-- Brown color -->
+        <corners android:radius="8dp" /> <!-- Optional: adds rounded corners -->
+</shape>
