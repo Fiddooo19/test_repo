@@ -410,7 +410,7 @@ public class ProfileActivity extends AppCompatActivity {
                     clearSessionAndRedirect();
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "Error: " + response.message(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Successfully change picture profile", Toast.LENGTH_LONG).show();
                     // server return other error
                     Log.e("MyApp: ", response.toString());
                 }
