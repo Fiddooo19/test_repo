@@ -41,4 +41,8 @@ public interface UserService {
 
     @GET("users/{id}")
     Call<User> getUser (@Header("api-key") String api_key, @Path("id") int id);
+
+    // New method to get user profile with points
+    @GET("users/{id}")
+    Call<User> getUserWithPoints(@Header("api-key") String api_key, @Path("id") int id);
 }

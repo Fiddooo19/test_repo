@@ -46,7 +46,7 @@ import retrofit2.Response;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private TextView tvUsername, tvEmail, tvRole;
+    private TextView tvUsername, tvEmail, tvRole,tvPoints;
     private Button btnLogout, btnChangePicture;
     private ImageView imgProfilePicture;
     private User user;
@@ -68,6 +68,7 @@ public class ProfileActivity extends AppCompatActivity {
         tvEmail = findViewById(R.id.tvEmail);
         tvRole = findViewById(R.id.tvRole);
         btnLogout = findViewById(R.id.btnLogout);
+        tvPoints = findViewById(R.id.tvPoints);  // Reference to the points TextView
         imgProfilePicture = findViewById(R.id.imgProfilePicture);
         btnChangePicture = findViewById(R.id.btnChangePicture);
 
@@ -86,9 +87,15 @@ public class ProfileActivity extends AppCompatActivity {
 
                     user = response.body();
 
+                    // Debugging log to check if points are being fetched correctly
+                    Log.d("ProfileActivity", "Points from API: " + user.getPoints());
+
                     tvUsername.setText(user.getUsername());
                     tvEmail.setText(user.getEmail());
                     tvRole.setText(user.getRole());
+                    // Display points
+                    tvPoints.setText("Points: " + user.getPoints());
+
 
                     // Use Glide to load the image into the ImageView
                     Glide.with(getApplicationContext())
@@ -96,7 +103,11 @@ public class ProfileActivity extends AppCompatActivity {
                             .placeholder(R.drawable.account) // Placeholder image if the URL is empty
                             .error(R.drawable.icon) // Error image if there is a problem loading the image
                             .into(imgProfilePicture);
+
+                } else {
+                    Log.d("ProfileActivity", "Error fetching user data: " + response.message());
                 }
+
             }
 
             @Override
@@ -106,6 +117,8 @@ public class ProfileActivity extends AppCompatActivity {
                 // for debug purpose
                 Log.d("MyApp:", "Error: " + t.getCause().getMessage());
             }
+
+
 
 
 

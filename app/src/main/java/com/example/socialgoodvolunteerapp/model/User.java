@@ -14,6 +14,7 @@ public class User {
     private String secret;
     private String image;
     private String profileImagePath;
+    private int points;  // New field for storing points
 
     public int getId() {
         return id;
@@ -102,6 +103,14 @@ public class User {
 
     public void setProfileImagePath(String profileImagePath) {
         this.profileImagePath = profileImagePath;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 
 
