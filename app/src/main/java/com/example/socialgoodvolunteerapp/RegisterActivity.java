@@ -54,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void registerUser(String username, String email, String password) {
         UserService userService = ApiUtils.getUserService();
         // Default role set to "user"
-        Call<User> call = userService.registerUser(username, email, password, "user");
+        Call<User> call = userService.registerUser(email, password);
 
         call.enqueue(new Callback<User>() {
             @Override

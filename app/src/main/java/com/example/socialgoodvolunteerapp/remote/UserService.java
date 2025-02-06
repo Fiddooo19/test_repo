@@ -26,13 +26,9 @@ public interface UserService {
     Call<User> loginEmail(@Field("email") String email, @Field("password") String password);
 
     @FormUrlEncoded
-    @POST("register")
-    Call<User> registerUser(
-            @Field("username") String username,
-            @Field("email") String email,
-            @Field("password") String password,
-            @Field("role") String role // Added field for role
-    );
+    @POST("users/register")
+    Call<User> registerUser(@Field("email") String email, @Field("password") String password);
+           // Added field for role;
 
     // Add the method for updating profile picture
     @FormUrlEncoded
